@@ -4,6 +4,8 @@ import getWeb3 from "./utils/getWeb3";
 //import IPFS from './ipfs.js'
 import "./App.css";
 import ipfs from "./ipfs.js";
+import { Card, Heading, Text, Button } from 'rimble-ui';
+
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null, ipfsHash : null , buffer:null };
@@ -107,7 +109,7 @@ class App extends Component {
         </p>
         <form onSubmit={this.ipfsSubmit}>
         <input type="file" onChange = {this.captureFile}/>
-        <button type="submit" > Submit</button>
+        <Button size={'medium'}>Submit</Button>;
         </form>
         <p>
           */run ipfs daemon in a seperate terminal window/*
@@ -116,6 +118,17 @@ class App extends Component {
         </p>
         <div>The stored value is: {this.state.storageValue} the ipfs version is {this.state.ipfshash}</div>
        <a href={"https://gateway.ipfs.io/ipfs/" + this.state.ipfsHash}>Click to see on IPFS. </a>
+       <Card width={'420px'} mx={'auto'} px={4}>
+  <Heading>Heading</Heading>
+  <Text mb={4}>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam autem
+    ratione doloribus quidem neque provident eius error dignissimos delectus
+    architecto nemo quos alias sunt voluptate impedit, facilis sequi tempore.
+    Amet!
+  </Text>
+  <Button mr={3}>Accept</Button>
+  <Button.Outline>Cancel</Button.Outline>
+</Card>
       </div>
     );
   }
