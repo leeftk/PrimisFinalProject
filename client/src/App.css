@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background: #F4F4F4;
+  padding-bottom: 100%;
 }
 
 .App-logo {
@@ -29,4 +31,7 @@
   to {
     transform: rotate(360deg);
   }
+}
+.cardleft{
+  background: pink;
 }

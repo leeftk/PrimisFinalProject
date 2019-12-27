@@ -4,7 +4,8 @@ import getWeb3 from "./utils/getWeb3";
 //import IPFS from './ipfs.js'
 import "./App.css";
 import ipfs from "./ipfs.js";
-import { Card, Heading, Text, Button } from 'rimble-ui';
+import { Card, Heading, Text, Button, Box, Flex } from 'rimble-ui';
+import { Input } from 'rimble-ui';
 
 
 class App extends Component {
@@ -97,7 +98,37 @@ class App extends Component {
     console.log(this.state.buffer)
     return (
       <div className="App">
-        <h1>Good to Go!</h1>
+        <Box borderWidth={1} p={3} width={[2, 2, 1]} bg={'#555555'} height={200} >
+          <Text fontSize={48} fontFamily='sansSerif' fontWeight={400} 
+          alignItems={'center'} mr={1100}  mt={50} color={"#F4F4F4"}>Primis</Text>
+          <Text.p lineHeight={1.3} ml={210} width={1 / 2}  color={"white"} textAlign={'left'} color={'#F4F4F4'} fontWeight={'normal'} alignItems={'center'}>Proving firstness.
+          secure hash of the file.</Text.p>
+        </Box>
+        <Box p={6.5}  bg={'#4E3FCE'} height={0} >
+        </Box>
+
+        <Flex>
+        <Box p={3} width={1 / 2} >
+        <Heading  ml={200} mt={50} pb={10} as={"h2"} fontSize={32} textAlign={'left'} fontFamily="sansSerif" fontStyle={'normal'} fontWeight={400} alignItems={'center'} 
+         >Upload a file </Heading>
+        <Text.p ml={200} lineHeight={1.3} textAlign={'left'}>Upload your file here. Primis will securley store your file and allow you to prove ownership 
+          over the file using blockchain. Files will never be uploaded to the blockchain. Only a cryptographically 
+          secure hash of the file.</Text.p>
+        </Box>
+        <Box p={3} width={1 / 2} >
+        <Card ml={200} mt={20} width={'420px'}  px={4}>
+          <Heading pb={30} as={"h3"} pr={100}>Upload your Document here</Heading>
+        <Box border='1px dashed #CCCCCC' boxSizing={'border-box'} borderWidth={1} p={3} width={[2, 2, 1]} bg={'#ECEAEA'}  >
+        <Input type="file" />
+        </Box>
+        <Box pb={20}></Box>
+        <Button>Submit</Button>
+        </Card>
+        </Box>
+      </Flex>
+       
+   
+        {/* <h1>Good to Go!</h1>
         <p>Your Truffle Box is installed and ready.</p>
         <h2>Smart Contract Example</h2>
         <p>
@@ -112,23 +143,16 @@ class App extends Component {
         <Button size={'medium'}>Submit</Button>;
         </form>
         <p>
-          */run ipfs daemon in a seperate terminal window/*
+          run ipfs daemon in a seperate terminal window/*
           Try uploading a file to IPFS while you have an IPFS daemon running!!
           If you see the IPFS hash in the console then the file was upload successfully!
         </p>
         <div>The stored value is: {this.state.storageValue} the ipfs version is {this.state.ipfshash}</div>
-       <a href={"https://gateway.ipfs.io/ipfs/" + this.state.ipfsHash}>Click to see on IPFS. </a>
-       <Card width={'420px'} mx={'auto'} px={4}>
-  <Heading>Heading</Heading>
-  <Text mb={4}>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam autem
-    ratione doloribus quidem neque provident eius error dignissimos delectus
-    architecto nemo quos alias sunt voluptate impedit, facilis sequi tempore.
-    Amet!
-  </Text>
-  <Button mr={3}>Accept</Button>
-  <Button.Outline>Cancel</Button.Outline>
-</Card>
+       <a href={"https://gateway.ipfs.io/ipfs/" + this.state.ipfsHash}>Click to see on IPFS. </a> 
+         */}
+
+      
+        
       </div>
     );
   }
