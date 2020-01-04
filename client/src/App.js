@@ -6,10 +6,12 @@ import "./App.css";
 import ipfs from "./ipfs.js";
 import { Card, Heading, Text, Button, Box, Flex } from 'rimble-ui';
 import { Input } from 'rimble-ui';
-
+import Image from 'react-bootstrap/Image';
+import 'bootstrap/dist/css/bootstrap.min.css';
+//import logo from "./img/logo.jpg"
 
 class App extends Component {
-  state = { storageValue: 0, web3: null, accounts: null, contract: null, ipfsHash : null , buffer:null };
+  state = { storageValue: null, web3: null, accounts: null, contract: null, ipfsHash : null, buffer:null };
 
   componentDidMount = async () => {
     try {
@@ -43,11 +45,11 @@ class App extends Component {
     const { accounts, contract } = this.state;
 
     // Stores a given value, 5 by default.
-    await contract.methods.set(5).send({ from: accounts[0] });
+    
 
     // Get the value from the contract to prove it worked.
-    const response = await contract.methods.get().call();
-
+    const response = await contract.methods.proof().call();
+    console.log(response)
     // Update state with the result.
     this.setState({ storageValue: response });
   };
@@ -59,18 +61,27 @@ class App extends Component {
   };
   
  //converts file submitted to a buffer
- captureFile = (event) =>{
-   event.stopPropagation()
-   event.preventDefault()
-   const file = event.target.files[0]
-   let reader = new window.FileReader()
-   reader.readAsArrayBuffer(file)
-   reader.onloadend = () => this.convertToBuffer(reader)
-   //this.setState({buffer:reader})
+ notarize(content){
+  // const response = this.state.contract.methods.proof().call();
+  //  console.log("the hash",this.state.ipfsHash)
+
+ this.state.contract.methods.notarize(content).send({ from: this.state.accounts[0] }).on("receipt", function(){
+   console.log("Receipt");
+ });
+//  console.log("response:", response)
  };
 
  //helper function
 
+ captureFile = (event) =>{
+  event.stopPropagation()
+  event.preventDefault()
+  const file = event.target.files[0]
+  let reader = new window.FileReader()
+  reader.readAsArrayBuffer(file)
+  reader.onloadend = () => this.convertToBuffer(reader)
+  //this.setState({buffer:reader})
+};
   
 
   ipfsSubmit = async (event) => {
@@ -83,8 +94,14 @@ class App extends Component {
 
     await ipfs.add(this.state.buffer, (err, ipfsHash) => {
       console.log(err,ipfsHash);
-      this.setState({ ipfsHash: ipfsHash[0].hash });
-      console.log(this.state.ipfsHash)
+      this.setState({ ipfsHash: ipfsHash[0].hash })
+      this.notarize(ipfsHash[0].hash)
+      const proof = this.state.contract.methods.hash().call()
+      console.log("Proofl:", proof)
+      //console.log('store',store)
+      console.log("IPFS Hash:", this.state.ipfsHash)
+      console.log("IPFS Hash TYPE:", typeof this.state.ipfsHash)
+      console.log("Storage Value:",this.state.storageValue)
     })
   };
 
@@ -98,12 +115,16 @@ class App extends Component {
     console.log(this.state.buffer)
     return (
       <div className="App">
-        <Box borderWidth={1} p={3} width={[2, 2, 1]} bg={'#555555'} height={200} >
+        <div className="boxheading">
+        <Box  >
+        
           <Text fontSize={48} fontFamily='sansSerif' fontWeight={400} 
-          alignItems={'center'} mr={1100}  mt={50} color={"#F4F4F4"}>Primis</Text>
-          <Text.p lineHeight={1.3} ml={210} width={1 / 2}  color={"white"} textAlign={'left'} color={'#F4F4F4'} fontWeight={'normal'} alignItems={'center'}>Proving firstness.
-          secure hash of the file.</Text.p>
+         color={"#F4F4F4"}><div className="title">Primis
+         <Image fluid />
+         </div></Text>
+      
         </Box>
+        </div>
         <Box p={6.5}  bg={'#4E3FCE'} height={0} >
         </Box>
 
@@ -117,12 +138,12 @@ class App extends Component {
         </Box>
         <Box p={3} width={1 / 2} >
         <Card ml={200} mt={20} width={'420px'}  px={4}>
-          <Heading pb={30} as={"h3"} pr={100}>Upload your Document here</Heading>
+          <Heading pb={30} as={"h4"}  textAlign={'center'}>Upload your Document here</Heading>
         <Box border='1px dashed #CCCCCC' boxSizing={'border-box'} borderWidth={1} p={3} width={[2, 2, 1]} bg={'#ECEAEA'}  >
-        <Input type="file" />
+        <Input type="file" onChange = {this.captureFile} />
         </Box>
         <Box pb={20}></Box>
-        <Button>Submit</Button>
+        <Button onClick={this.ipfsSubmit}> Submit</Button>
         </Card>
         </Box>
       </Flex>
