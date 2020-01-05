@@ -7,7 +7,7 @@ bytes32 public proof;
 
 uint public proofCount = 0;
 
-mapping(uint => proof) public proofs;
+mapping(uint => ) public proofs;
 
 struct Item :{
     string hash;
@@ -19,9 +19,6 @@ struct Item :{
   
 }
 
- 
-
-  
  // store a proof of existence in the contract state
     function notarize(string memory ipfshash ) public {
         proof = hash(ipfshash);
