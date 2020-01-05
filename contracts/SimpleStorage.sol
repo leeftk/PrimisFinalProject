@@ -3,34 +3,34 @@ pragma solidity ^0.5.0;
 contract SimpleStorage {
   uint storedData;
 
-bytes32 public proof;
+//bytes32 public proof;
 
 uint public proofCount = 0;
 
-mapping(uint => ) public proofs;
+mapping(uint => proof) public proofs;
 
-struct Item :{
-    string hash;
+struct proof {
+    bytes32 hash;
     uint proofcount;
-    uint price;
-    bool purchased;
-    address payable buyer;
-    address payable seller;
+    // uint price;
+    // bool purchased;
+    // address payable buyer;
+    // address payable seller;
   
-}
+ }
 
  // store a proof of existence in the contract state
     function notarize(string memory ipfshash ) public {
-        proof = hash(ipfshash);
-        proofCount++;
-        proof = proofs[proofCount];
+        bytes32 proofhash = hash(ipfshash);
+        uint id = proofCount++;
+        proofs[proofCount] = proof({hash: proofhash,proofcount:id});
     }
     function hash(string memory ipfshash) internal view returns (bytes32){
       return sha256(abi.encodePacked(ipfshash));
     }
 
-    function getProof(uint _proofcount) public view returns(string){
-      return proofs[_proofcount];
+    function getProof(uint _proofcount)  public view returns(bytes32){
+      return proofs[_proofcount].hash;
     }
 }
 
