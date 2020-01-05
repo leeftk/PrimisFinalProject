@@ -9,6 +9,15 @@ uint public proofCount = 0;
 
 mapping(uint => proof) public proofs;
 
+struct Item :{
+    string hash;
+    uint proofcount;
+    uint price;
+    bool purchased;
+    address payable buyer;
+    address payable seller;
+  
+}
 
  
 
