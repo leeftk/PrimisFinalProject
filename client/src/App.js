@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //import logo from "./img/logo.jpg"
 
 class App extends Component {
-  state = { storageValue: null, web3: null, accounts: null, contract: null, ipfsHash : null, buffer:null };
+  state = { storageValue: null, web3: null, accounts: null, contract: null, ipfsHash : null, buffer: null, proofs: [], proofcount: null };
 
   componentDidMount = async () => {
     try {
@@ -28,6 +28,7 @@ class App extends Component {
         SimpleStorageContract.abi,
         deployedNetwork && deployedNetwork.address,
       );
+    
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
@@ -40,6 +41,7 @@ class App extends Component {
       console.error(error);
     }
   };
+  
 
   runExample = async () => {
     const { accounts, contract } = this.state;
@@ -48,10 +50,29 @@ class App extends Component {
     
 
     // Get the value from the contract to prove it worked.
-    const response = await contract.methods.proof().call();
-    console.log(response)
+    //const response = await contract.methods.proof().call();
+    //console.log(response)
     // Update state with the result.
-    this.setState({ storageValue: response });
+    //this.setState({ storageValue: response });
+    const proofCount = await contract.methods.proofCount().call()
+    this.setState({ proofcount: proofCount }, function (){
+      console.log("ProofCount:",proofCount);
+    })
+   
+    let result = []
+    for(var i = 1; i <= proofCount;i++){
+      const proof =  await this.state.contract.methods.getProof(i).call()
+      result.push(proof)
+      this.setState({ proofs: [...this.state.proofs, result ]})
+    }
+    console.log(this.state.proofs)
+   
+   
+    this.getProof = this.getProof.bind(this);
+
+    
+      
+          
   };
 
   convertToBuffer = async(reader) => {
@@ -66,13 +87,14 @@ class App extends Component {
   //  console.log("the hash",this.state.ipfsHash)
 
  this.state.contract.methods.notarize(content).send({ from: this.state.accounts[0] }).on("receipt", function(){
-   console.log("Receipt");
+   console.log("Receipt of notary");
  });
 //  console.log("response:", response)
  };
 
- //helper function
+//
 
+ //helper function
  captureFile = (event) =>{
   event.stopPropagation()
   event.preventDefault()
@@ -82,6 +104,15 @@ class App extends Component {
   reader.onloadend = () => this.convertToBuffer(reader)
   //this.setState({buffer:reader})
 };
+ 
+async getProof() {
+  const proofCount = await this.state.contract.methods.proofCount().call()
+  this.setState({ proofcount: proofCount }, function (){
+    console.log("ProofCount:",proofCount);
+ 
+  })
+}
+ 
   
 
   ipfsSubmit = async (event) => {
@@ -96,12 +127,17 @@ class App extends Component {
       console.log(err,ipfsHash);
       this.setState({ ipfsHash: ipfsHash[0].hash })
       this.notarize(ipfsHash[0].hash)
-      const proof = this.state.contract.methods.hash().call()
-      console.log("Proofl:", proof)
+      //this.
+      // const proof = this.state.contract.methods.getProof(1).send({ from: this.state.accounts[0] }).on("receipt", function(){
+      //   this.setState({ proof: proof })
+      //   console.log("Proof:", proof);
+      // });
+  
+      
       //console.log('store',store)
       console.log("IPFS Hash:", this.state.ipfsHash)
       console.log("IPFS Hash TYPE:", typeof this.state.ipfsHash)
-      console.log("Storage Value:",this.state.storageValue)
+      //console.log("Storage Value:",this.state.storageValue)
     })
   };
 
@@ -112,7 +148,7 @@ class App extends Component {
       //console.log(this.state.buffer)
       return <div>Loading Web3, accounts, and contract...</div>;
     }
-    console.log(this.state.buffer)
+    //console.log(this.state.buffer)
     return (
       <div className="App">
         <div className="boxheading">
@@ -144,6 +180,7 @@ class App extends Component {
         </Box>
         <Box pb={20}></Box>
         <Button onClick={this.ipfsSubmit}> Submit</Button>
+        <Button onClick={this.getProof}> proof</Button>
         </Card>
         </Box>
       </Flex>

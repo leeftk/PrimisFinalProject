@@ -23,7 +23,7 @@ struct proof {
     function notarize(string memory ipfshash ) public {
         bytes32 proofhash = hash(ipfshash);
         uint id = proofCount++;
-        proofs[proofCount] = proof({hash: proofhash,proofcount:id});
+        proofs[proofCount] = proof({hash: proofhash, proofcount:id });
     }
     function hash(string memory ipfshash) internal view returns (bytes32){
       return sha256(abi.encodePacked(ipfshash));
