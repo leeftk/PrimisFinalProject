@@ -65,7 +65,7 @@ class App extends Component {
       result.push(proof)
       this.setState({ proofs: [...this.state.proofs, result ]})
     }
-    console.log(this.state.proofs)
+    console.log(result)
    
    
     this.getProof = this.getProof.bind(this);
@@ -111,6 +111,13 @@ async getProof() {
     console.log("ProofCount:",proofCount);
  
   })
+  let result = []
+  for(var i = 1; i <= proofCount;i++){
+    const proof =  await this.state.contract.methods.getProof(i).call()
+    result.push(proof)
+    this.setState({ proofs: [...this.state.proofs, result ]})
+  }
+  console.log(result)
 }
  
   
