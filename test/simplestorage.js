@@ -1,15 +1,32 @@
 const SimpleStorage = artifacts.require("./SimpleStorage.sol");
 
 contract("SimpleStorage", accounts => {
-  it("...should store the value 89.", async () => {
+  it("creates a hash, verifies hash is not equal to 0", async () => {
     const simpleStorageInstance = await SimpleStorage.deployed();
 
-    // Set value of 89
-    await simpleStorageInstance.set(89, { from: accounts[0] });
+    // Hashes a file
+    await simpleStorageInstance.notarize("hi", { from: accounts[0] });
 
-    // Get stored value
-    const storedData = await simpleStorageInstance.get.call();
+    // Gets the proof
+    const proof = await simpleStorageInstance.getProof.call(0);
 
-    assert.equal(storedData, 89, "The value 89 was not stored.");
+    assert.notEqual(proof, "0x0000000000")
+
+  });
+
+
+  it("proofCount should equal 1", async () => {
+    const simpleStorageInstance = await SimpleStorage.deployed();
+
+  
+
+    // Gets the proof count
+    const proofCount = await simpleStorageInstance.proofCount.call();
+
+
+
+    assert.equal(proofCount, 1 );
+    
+
   });
 });
