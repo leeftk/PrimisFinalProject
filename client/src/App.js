@@ -35,18 +35,24 @@ class App extends Component {
       //     console.log('myEvent: ' + JSON.stringify(eventResult.args));
       // });
 
+//       const entries = Object.entries(fruits)
+// console.log(entries)
+        let result = []
       instance.events.LogProofs({
         filter: {address: [this.state.accounts]}, // Using an array means OR: e.g. 20 or 23
         fromBlock: 0,
         toBlock: 'latest'
     }, (error, event)=>{
-      if(event.returnValues[0] == this.state.accounts[0]){
-        console.log(event.returnValues[1])
+      if(event.returnValues[0] == this.state.accounts){
+        const entries = Object.entries(event.returnValues)
+        //console.log(entries[3])
+      result.push(entries[3])
+        //console.log(event.returnValues[2])
       }else
         console.log("wrong account buddy!")
 
       })
-    
+    console.log(result)
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
