@@ -2,6 +2,25 @@
   "contractName": "SimpleStorage",
   "abi": [
     {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "adress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "proof",
+          "type": "bytes32"
+        }
+      ],
+      "name": "LogProofs",
+      "type": "event"
+    },
+    {
       "constant": true,
       "inputs": [],
       "name": "proofCount",
@@ -79,21 +98,21 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_proofcount\",\"type\":\"uint256\"}],\"name\":\"getProof\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"ipfshash\",\"type\":\"string\"}],\"name\":\"notarize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"proofCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"proofs\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"proofcount\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/leefaria/Documents/Code/finalproject/ipfsdemo/contracts/SimpleStorage.sol\":\"SimpleStorage\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/leefaria/Documents/Code/finalproject/ipfsdemo/contracts/SimpleStorage.sol\":{\"keccak256\":\"0x493087ce59a778de7d1dc20027a1f2ec1a2fa43d6fd58773f664d13ba5a12c8a\",\"urls\":[\"bzz-raw://c3243eeb030961a6608dfeb115d8ae39c17bfb22209f95a01cc6d6934eebc3dd\",\"dweb:/ipfs/QmSH7mUeR448xXaSGQ2M61ipd92YZkrqq2Aat6Wfxbc1Sa\"]}},\"version\":1}",
-  "bytecode": "0x6080604052600060015534801561001557600080fd5b506103ad806100256000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c806311149ada146100515780637183616c146100935780639ddaf5aa1461014e578063addecc0614610197575b600080fd5b61007d6004803603602081101561006757600080fd5b81019080803590602001909291905050506101b5565b6040518082815260200191505060405180910390f35b61014c600480360360208110156100a957600080fd5b81019080803590602001906401000000008111156100c657600080fd5b8201836020820111156100d857600080fd5b803590602001918460018302840111640100000000831117156100fa57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506101d5565b005b61017a6004803603602081101561016457600080fd5b810190808035906020019092919050505061023d565b604051808381526020018281526020019250505060405180910390f35b61019f610261565b6040518082815260200191505060405180910390f35b600060026000838152602001908152602001600020600001549050919050565b60006101e082610267565b90506000600160008154809291906001019190505590506040518060400160405280838152602001828152506002600060015481526020019081526020016000206000820151816000015560208201518160010155905050505050565b60026020528060005260406000206000915090508060000154908060010154905082565b60015481565b60006002826040516020018082805190602001908083835b602083106102a2578051825260208201915060208101905060208303925061027f565b6001836020036101000a0380198251168184511680821785525050505050509050019150506040516020818303038152906040526040518082805190602001908083835b6020831061030957805182526020820191506020810190506020830392506102e6565b6001836020036101000a038019825116818451168082178552505050505050905001915050602060405180830381855afa15801561034b573d6000803e3d6000fd5b5050506040513d602081101561036057600080fd5b8101908080519060200190929190505050905091905056fea265627a7a72315820370e7f195975026a79bacc428e43b4d1734305fe8a7b9ad5c26253f1708b801864736f6c634300050c0032",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c806311149ada146100515780637183616c146100935780639ddaf5aa1461014e578063addecc0614610197575b600080fd5b61007d6004803603602081101561006757600080fd5b81019080803590602001909291905050506101b5565b6040518082815260200191505060405180910390f35b61014c600480360360208110156100a957600080fd5b81019080803590602001906401000000008111156100c657600080fd5b8201836020820111156100d857600080fd5b803590602001918460018302840111640100000000831117156100fa57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506101d5565b005b61017a6004803603602081101561016457600080fd5b810190808035906020019092919050505061023d565b604051808381526020018281526020019250505060405180910390f35b61019f610261565b6040518082815260200191505060405180910390f35b600060026000838152602001908152602001600020600001549050919050565b60006101e082610267565b90506000600160008154809291906001019190505590506040518060400160405280838152602001828152506002600060015481526020019081526020016000206000820151816000015560208201518160010155905050505050565b60026020528060005260406000206000915090508060000154908060010154905082565b60015481565b60006002826040516020018082805190602001908083835b602083106102a2578051825260208201915060208101905060208303925061027f565b6001836020036101000a0380198251168184511680821785525050505050509050019150506040516020818303038152906040526040518082805190602001908083835b6020831061030957805182526020820191506020810190506020830392506102e6565b6001836020036101000a038019825116818451168082178552505050505050905001915050602060405180830381855afa15801561034b573d6000803e3d6000fd5b5050506040513d602081101561036057600080fd5b8101908080519060200190929190505050905091905056fea265627a7a72315820370e7f195975026a79bacc428e43b4d1734305fe8a7b9ad5c26253f1708b801864736f6c634300050c0032",
-  "sourceMap": "25:812:1:-;;;120:1;95:26;;25:812;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:812:1;;;;;;;",
-  "deployedSourceMap": "25:812:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:812:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;724:111;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;724:111:1;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;384:204;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;384:204:1;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;384:204:1;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;384:204:1;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;384:204:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;384:204:1;;;;;;;;;;;;;;;:::i;:::-;;124:36;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;124:36:1;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;95:26;;;:::i;:::-;;;;;;;;;;;;;;;;;;;724:111;781:7;804:6;:19;811:11;804:19;;;;;;;;;;;:24;;;797:31;;724:111;;;:::o;384:204::-;444:17;464:14;469:8;464:4;:14::i;:::-;444:34;;488:7;498:10;;:12;;;;;;;;;;;;488:22;;541:40;;;;;;;;554:9;541:40;;;;576:2;541:40;;;520:6;:18;527:10;;520:18;;;;;;;;;;;:61;;;;;;;;;;;;;;;;;;;384:204;;;:::o;124:36::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;95:26::-;;;;:::o;593:125::-;654:7;677:34;701:8;684:26;;;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:11;36:153;;182:3;176:10;171:3;164:23;98:2;93:3;89:12;82:19;;123:2;118:3;114:12;107:19;;148:2;143:3;139:12;132:19;;36:153;;;274:1;267:3;263:2;259:12;254:3;250:22;246:30;315:4;311:9;305:3;299:10;295:26;356:4;350:3;344:10;340:21;389:7;380;377:20;372:3;365:33;3:399;;;684:26:1;;;;;;;;;;;49:4:-1;39:7;30;26:21;22:32;13:7;6:49;684:26:1;;;677:34;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:11;36:153;;182:3;176:10;171:3;164:23;98:2;93:3;89:12;82:19;;123:2;118:3;114:12;107:19;;148:2;143:3;139:12;132:19;;36:153;;;274:1;267:3;263:2;259:12;254:3;250:22;246:30;315:4;311:9;305:3;299:10;295:26;356:4;350:3;344:10;340:21;389:7;380;377:20;372:3;365:33;3:399;;;677:34:1;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;677:34:1;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;677:34:1;;;;;;;;;;;;;;;;670:41;;593:125;;;:::o",
-  "source": "pragma solidity ^0.5.0;\n\ncontract SimpleStorage {\n  uint storedData;\n\n//bytes32 public proof;\n\nuint public proofCount = 0;\n\nmapping(uint => proof) public proofs;\n\nstruct proof {\n    bytes32 hash;\n    uint proofcount;\n    // uint price;\n    // bool purchased;\n    // address payable buyer;\n    // address payable seller;\n  \n }\n\n // store a proof of existence in the contract state\n    function notarize(string memory ipfshash ) public {\n        bytes32 proofhash = hash(ipfshash);\n        uint id = proofCount++;\n        proofs[proofCount] = proof({hash: proofhash, proofcount:id });\n    }\n    function hash(string memory ipfshash) internal view returns (bytes32){\n      return sha256(abi.encodePacked(ipfshash));\n    }\n\n    function getProof(uint _proofcount)  public view returns(bytes32){\n      return proofs[_proofcount].hash;\n    }\n}\n\n",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"adress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"proof\",\"type\":\"bytes32\"}],\"name\":\"LogProofs\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_proofcount\",\"type\":\"uint256\"}],\"name\":\"getProof\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"ipfshash\",\"type\":\"string\"}],\"name\":\"notarize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"proofCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"proofs\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"hash\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"proofcount\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/leefaria/Documents/Code/finalproject/ipfsdemo/contracts/SimpleStorage.sol\":\"SimpleStorage\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/leefaria/Documents/Code/finalproject/ipfsdemo/contracts/SimpleStorage.sol\":{\"keccak256\":\"0xd93e1fb5f80671c66fbc2a0a22477ad484c986fb052532db095b0fcfb8944c15\",\"urls\":[\"bzz-raw://bd9f364811247bf135227471baf668449b6748ac920614ae39452bc8d22c255a\",\"dweb:/ipfs/QmWnBHuKinRMYtKTTFrag3ugLSncVkYmyqiSGXZ5DSZohy\"]}},\"version\":1}",
+  "bytecode": "0x6080604052600060015534801561001557600080fd5b50610418806100256000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c806311149ada146100515780637183616c146100935780639ddaf5aa1461014e578063addecc0614610197575b600080fd5b61007d6004803603602081101561006757600080fd5b81019080803590602001909291905050506101b5565b6040518082815260200191505060405180910390f35b61014c600480360360208110156100a957600080fd5b81019080803590602001906401000000008111156100c657600080fd5b8201836020820111156100d857600080fd5b803590602001918460018302840111640100000000831117156100fa57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506101d5565b005b61017a6004803603602081101561016457600080fd5b81019080803590602001909291905050506102a8565b604051808381526020018281526020019250505060405180910390f35b61019f6102cc565b6040518082815260200191505060405180910390f35b600060026000838152602001908152602001600020600001549050919050565b60006101e0826102d2565b905060006001600081548092919060010191905055905060405180604001604052808381526020018281525060026000600154815260200190815260200160002060008201518160000155602082015181600101559050507f4adcc1b3465158954cf2f274f9f107cde1dc31e8079e1d568c3beb0c8f09af513383604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019250505060405180910390a1505050565b60026020528060005260406000206000915090508060000154908060010154905082565b60015481565b60006002826040516020018082805190602001908083835b6020831061030d57805182526020820191506020810190506020830392506102ea565b6001836020036101000a0380198251168184511680821785525050505050509050019150506040516020818303038152906040526040518082805190602001908083835b602083106103745780518252602082019150602081019050602083039250610351565b6001836020036101000a038019825116818451168082178552505050505050905001915050602060405180830381855afa1580156103b6573d6000803e3d6000fd5b5050506040513d60208110156103cb57600080fd5b8101908080519060200190929190505050905091905056fea265627a7a72315820a33c97a76a1cd5a5826136e66969d49d3e9289a3979a569e1829bb9a335c9bce64736f6c634300050c0032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c806311149ada146100515780637183616c146100935780639ddaf5aa1461014e578063addecc0614610197575b600080fd5b61007d6004803603602081101561006757600080fd5b81019080803590602001909291905050506101b5565b6040518082815260200191505060405180910390f35b61014c600480360360208110156100a957600080fd5b81019080803590602001906401000000008111156100c657600080fd5b8201836020820111156100d857600080fd5b803590602001918460018302840111640100000000831117156100fa57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506101d5565b005b61017a6004803603602081101561016457600080fd5b81019080803590602001909291905050506102a8565b604051808381526020018281526020019250505060405180910390f35b61019f6102cc565b6040518082815260200191505060405180910390f35b600060026000838152602001908152602001600020600001549050919050565b60006101e0826102d2565b905060006001600081548092919060010191905055905060405180604001604052808381526020018281525060026000600154815260200190815260200160002060008201518160000155602082015181600101559050507f4adcc1b3465158954cf2f274f9f107cde1dc31e8079e1d568c3beb0c8f09af513383604051808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018281526020019250505060405180910390a1505050565b60026020528060005260406000206000915090508060000154908060010154905082565b60015481565b60006002826040516020018082805190602001908083835b6020831061030d57805182526020820191506020810190506020830392506102ea565b6001836020036101000a0380198251168184511680821785525050505050509050019150506040516020818303038152906040526040518082805190602001908083835b602083106103745780518252602082019150602081019050602083039250610351565b6001836020036101000a038019825116818451168082178552505050505050905001915050602060405180830381855afa1580156103b6573d6000803e3d6000fd5b5050506040513d60208110156103cb57600080fd5b8101908080519060200190929190505050905091905056fea265627a7a72315820a33c97a76a1cd5a5826136e66969d49d3e9289a3979a569e1829bb9a335c9bce64736f6c634300050c0032",
+  "sourceMap": "25:924:1:-;;;120:1;95:26;;25:924;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:924:1;;;;;;;",
+  "deployedSourceMap": "25:924:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:924:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;829:118;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;829:118:1;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;433:260;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;433:260:1;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;433:260:1;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;433:260:1;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;433:260:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;433:260:1;;;;;;;;;;;;;;;:::i;:::-;;173:36;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;173:36:1;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;95:26;;;:::i;:::-;;;;;;;;;;;;;;;;;;;829:118;886:7;909:6;:19;916:11;909:19;;;;;;;;;;;:24;;;902:31;;829:118;;;:::o;433:260::-;493:17;513:14;518:8;513:4;:14::i;:::-;493:34;;537:7;547:10;;:12;;;;;;;;;;;;537:22;;590:40;;;;;;;;603:9;590:40;;;;625:2;590:40;;;569:6;:18;576:10;;569:18;;;;;;;;;;;:61;;;;;;;;;;;;;;;;;;;645:32;655:10;667:9;645:32;;;;;;;;;;;;;;;;;;;;;;;;;;;;433:260;;;:::o;173:36::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;95:26::-;;;;:::o;698:125::-;759:7;782:34;806:8;789:26;;;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:11;36:153;;182:3;176:10;171:3;164:23;98:2;93:3;89:12;82:19;;123:2;118:3;114:12;107:19;;148:2;143:3;139:12;132:19;;36:153;;;274:1;267:3;263:2;259:12;254:3;250:22;246:30;315:4;311:9;305:3;299:10;295:26;356:4;350:3;344:10;340:21;389:7;380;377:20;372:3;365:33;3:399;;;789:26:1;;;;;;;;;;;49:4:-1;39:7;30;26:21;22:32;13:7;6:49;789:26:1;;;782:34;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:11;36:153;;182:3;176:10;171:3;164:23;98:2;93:3;89:12;82:19;;123:2;118:3;114:12;107:19;;148:2;143:3;139:12;132:19;;36:153;;;274:1;267:3;263:2;259:12;254:3;250:22;246:30;315:4;311:9;305:3;299:10;295:26;356:4;350:3;344:10;340:21;389:7;380;377:20;372:3;365:33;3:399;;;782:34:1;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;782:34:1;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;782:34:1;;;;;;;;;;;;;;;;775:41;;698:125;;;:::o",
+  "source": "pragma solidity ^0.5.0;\n\ncontract SimpleStorage {\n  uint storedData;\n\n//bytes32 public proof;\n\nuint public proofCount = 0;\n\nevent LogProofs(address adress, bytes32 proof);\n\nmapping(uint => proof) public proofs;\n\nstruct proof {\n    bytes32 hash;\n    uint proofcount;\n    // uint price;\n    // bool purchased;\n    // address payable buyer;\n    // address payable seller;\n  \n }\n\n // store a proof of existence in the contract state\n    function notarize(string memory ipfshash ) public {\n        bytes32 proofhash = hash(ipfshash);\n        uint id = proofCount++;\n        proofs[proofCount] = proof({hash: proofhash, proofcount:id });\n        emit LogProofs(msg.sender, proofhash);\n        \n    }\n    function hash(string memory ipfshash) internal view returns (bytes32){\n      return sha256(abi.encodePacked(ipfshash));\n    }\n\n    function getProof(uint _proofcount)  public view returns(bytes32){\n      return proofs[_proofcount].hash;\n      \n    }\n}\n\n",
   "sourcePath": "/Users/leefaria/Documents/Code/finalproject/ipfsdemo/contracts/SimpleStorage.sol",
   "ast": {
     "absolutePath": "/Users/leefaria/Documents/Code/finalproject/ipfsdemo/contracts/SimpleStorage.sol",
     "exportedSymbols": {
       "SimpleStorage": [
-        127
+        139
       ]
     },
-    "id": 128,
+    "id": 140,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -113,9 +132,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 127,
+        "id": 139,
         "linearizedBaseContracts": [
-          127
+          139
         ],
         "name": "SimpleStorage",
         "nodeType": "ContractDefinition",
@@ -125,7 +144,7 @@
             "id": 60,
             "name": "storedData",
             "nodeType": "VariableDeclaration",
-            "scope": 127,
+            "scope": 139,
             "src": "52:15:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -151,7 +170,7 @@
             "id": 63,
             "name": "proofCount",
             "nodeType": "VariableDeclaration",
-            "scope": 127,
+            "scope": 139,
             "src": "95:26:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -190,45 +209,115 @@
             "visibility": "public"
           },
           {
+            "anonymous": false,
+            "documentation": null,
+            "id": 69,
+            "name": "LogProofs",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 68,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 65,
+                  "indexed": false,
+                  "name": "adress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 69,
+                  "src": "140:14:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 64,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "140:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 67,
+                  "indexed": false,
+                  "name": "proof",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 69,
+                  "src": "156:13:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 66,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "156:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "139:31:1"
+            },
+            "src": "124:47:1"
+          },
+          {
             "constant": false,
-            "id": 67,
+            "id": 73,
             "name": "proofs",
             "nodeType": "VariableDeclaration",
-            "scope": 127,
-            "src": "124:36:1",
+            "scope": 139,
+            "src": "173:36:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_proof_$72_storage_$",
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_proof_$78_storage_$",
               "typeString": "mapping(uint256 => struct SimpleStorage.proof)"
             },
             "typeName": {
-              "id": 66,
+              "id": 72,
               "keyType": {
-                "id": 64,
+                "id": 70,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "132:4:1",
+                "src": "181:4:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "124:22:1",
+              "src": "173:22:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_proof_$72_storage_$",
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_proof_$78_storage_$",
                 "typeString": "mapping(uint256 => struct SimpleStorage.proof)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 65,
+                "id": 71,
                 "name": "proof",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 72,
-                "src": "140:5:1",
+                "referencedDeclaration": 78,
+                "src": "189:5:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_proof_$72_storage_ptr",
+                  "typeIdentifier": "t_struct$_proof_$78_storage_ptr",
                   "typeString": "struct SimpleStorage.proof"
                 }
               }
@@ -238,15 +327,15 @@
           },
           {
             "canonicalName": "SimpleStorage.proof",
-            "id": 72,
+            "id": 78,
             "members": [
               {
                 "constant": false,
-                "id": 69,
+                "id": 75,
                 "name": "hash",
                 "nodeType": "VariableDeclaration",
-                "scope": 72,
-                "src": "182:12:1",
+                "scope": 78,
+                "src": "231:12:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -254,10 +343,10 @@
                   "typeString": "bytes32"
                 },
                 "typeName": {
-                  "id": 68,
+                  "id": 74,
                   "name": "bytes32",
                   "nodeType": "ElementaryTypeName",
-                  "src": "182:7:1",
+                  "src": "231:7:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bytes32",
                     "typeString": "bytes32"
@@ -268,11 +357,11 @@
               },
               {
                 "constant": false,
-                "id": 71,
+                "id": 77,
                 "name": "proofcount",
                 "nodeType": "VariableDeclaration",
-                "scope": 72,
-                "src": "200:15:1",
+                "scope": 78,
+                "src": "249:15:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -280,10 +369,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 70,
+                  "id": 76,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "200:4:1",
+                  "src": "249:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -295,28 +384,28 @@
             ],
             "name": "proof",
             "nodeType": "StructDefinition",
-            "scope": 127,
-            "src": "163:162:1",
+            "scope": 139,
+            "src": "212:162:1",
             "visibility": "public"
           },
           {
             "body": {
-              "id": 97,
+              "id": 109,
               "nodeType": "Block",
-              "src": "434:154:1",
+              "src": "483:210:1",
               "statements": [
                 {
                   "assignments": [
-                    78
+                    84
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 78,
+                      "id": 84,
                       "name": "proofhash",
                       "nodeType": "VariableDeclaration",
-                      "scope": 97,
-                      "src": "444:17:1",
+                      "scope": 109,
+                      "src": "493:17:1",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -324,10 +413,10 @@
                         "typeString": "bytes32"
                       },
                       "typeName": {
-                        "id": 77,
+                        "id": 83,
                         "name": "bytes32",
                         "nodeType": "ElementaryTypeName",
-                        "src": "444:7:1",
+                        "src": "493:7:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -337,18 +426,18 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 82,
+                  "id": 88,
                   "initialValue": {
                     "argumentTypes": null,
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 80,
+                        "id": 86,
                         "name": "ipfshash",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 74,
-                        "src": "469:8:1",
+                        "referencedDeclaration": 80,
+                        "src": "518:8:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
                           "typeString": "string memory"
@@ -362,18 +451,18 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 79,
+                      "id": 85,
                       "name": "hash",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 113,
-                      "src": "464:4:1",
+                      "referencedDeclaration": 125,
+                      "src": "513:4:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$_t_string_memory_ptr_$returns$_t_bytes32_$",
                         "typeString": "function (string memory) view returns (bytes32)"
                       }
                     },
-                    "id": 81,
+                    "id": 87,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -381,27 +470,27 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "464:14:1",
+                    "src": "513:14:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "444:34:1"
+                  "src": "493:34:1"
                 },
                 {
                   "assignments": [
-                    84
+                    90
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 84,
+                      "id": 90,
                       "name": "id",
                       "nodeType": "VariableDeclaration",
-                      "scope": 97,
-                      "src": "488:7:1",
+                      "scope": 109,
+                      "src": "537:7:1",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -409,10 +498,10 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 83,
+                        "id": 89,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
-                        "src": "488:4:1",
+                        "src": "537:4:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -422,10 +511,10 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 87,
+                  "id": 93,
                   "initialValue": {
                     "argumentTypes": null,
-                    "id": 86,
+                    "id": 92,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -433,15 +522,15 @@
                     "nodeType": "UnaryOperation",
                     "operator": "++",
                     "prefix": false,
-                    "src": "498:12:1",
+                    "src": "547:12:1",
                     "subExpression": {
                       "argumentTypes": null,
-                      "id": 85,
+                      "id": 91,
                       "name": "proofCount",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 63,
-                      "src": "498:10:1",
+                      "src": "547:10:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -453,12 +542,12 @@
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "488:22:1"
+                  "src": "537:22:1"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 95,
+                    "id": 101,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -467,26 +556,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 88,
+                        "id": 94,
                         "name": "proofs",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 67,
-                        "src": "520:6:1",
+                        "referencedDeclaration": 73,
+                        "src": "569:6:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_proof_$72_storage_$",
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_proof_$78_storage_$",
                           "typeString": "mapping(uint256 => struct SimpleStorage.proof storage ref)"
                         }
                       },
-                      "id": 90,
+                      "id": 96,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 89,
+                        "id": 95,
                         "name": "proofCount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 63,
-                        "src": "527:10:1",
+                        "src": "576:10:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -497,9 +586,9 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "520:18:1",
+                      "src": "569:18:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_proof_$72_storage",
+                        "typeIdentifier": "t_struct$_proof_$78_storage",
                         "typeString": "struct SimpleStorage.proof storage ref"
                       }
                     },
@@ -510,12 +599,12 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 92,
+                          "id": 98,
                           "name": "proofhash",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 78,
-                          "src": "554:9:1",
+                          "referencedDeclaration": 84,
+                          "src": "603:9:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bytes32",
                             "typeString": "bytes32"
@@ -523,12 +612,12 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 93,
+                          "id": 99,
                           "name": "id",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 84,
-                          "src": "576:2:1",
+                          "referencedDeclaration": 90,
+                          "src": "625:2:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -546,18 +635,18 @@
                             "typeString": "uint256"
                           }
                         ],
-                        "id": 91,
+                        "id": 97,
                         "name": "proof",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 72,
-                        "src": "541:5:1",
+                        "referencedDeclaration": 78,
+                        "src": "590:5:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_struct$_proof_$72_storage_ptr_$",
+                          "typeIdentifier": "t_type$_t_struct$_proof_$78_storage_ptr_$",
                           "typeString": "type(struct SimpleStorage.proof storage pointer)"
                         }
                       },
-                      "id": 94,
+                      "id": 100,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -568,42 +657,129 @@
                         "proofcount"
                       ],
                       "nodeType": "FunctionCall",
-                      "src": "541:40:1",
+                      "src": "590:40:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_proof_$72_memory",
+                        "typeIdentifier": "t_struct$_proof_$78_memory",
                         "typeString": "struct SimpleStorage.proof memory"
                       }
                     },
-                    "src": "520:61:1",
+                    "src": "569:61:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_proof_$72_storage",
+                      "typeIdentifier": "t_struct$_proof_$78_storage",
                       "typeString": "struct SimpleStorage.proof storage ref"
                     }
                   },
-                  "id": 96,
+                  "id": 102,
                   "nodeType": "ExpressionStatement",
-                  "src": "520:61:1"
+                  "src": "569:61:1"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 104,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 154,
+                          "src": "655:3:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 105,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "655:10:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 106,
+                        "name": "proofhash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 84,
+                        "src": "667:9:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 103,
+                      "name": "LogProofs",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 69,
+                      "src": "645:9:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_bytes32_$returns$__$",
+                        "typeString": "function (address,bytes32)"
+                      }
+                    },
+                    "id": 107,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "645:32:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 108,
+                  "nodeType": "EmitStatement",
+                  "src": "640:37:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 98,
+            "id": 110,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "notarize",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 75,
+              "id": 81,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 74,
+                  "id": 80,
                   "name": "ipfshash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 98,
-                  "src": "402:22:1",
+                  "scope": 110,
+                  "src": "451:22:1",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -611,10 +787,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 73,
+                    "id": 79,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "402:6:1",
+                    "src": "451:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -624,25 +800,25 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "401:25:1"
+              "src": "450:25:1"
             },
             "returnParameters": {
-              "id": 76,
+              "id": 82,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "434:0:1"
+              "src": "483:0:1"
             },
-            "scope": 127,
-            "src": "384:204:1",
+            "scope": 139,
+            "src": "433:260:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 112,
+              "id": 124,
               "nodeType": "Block",
-              "src": "662:56:1",
+              "src": "767:56:1",
               "statements": [
                 {
                   "expression": {
@@ -653,12 +829,12 @@
                         "arguments": [
                           {
                             "argumentTypes": null,
-                            "id": 108,
+                            "id": 120,
                             "name": "ipfshash",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 100,
-                            "src": "701:8:1",
+                            "referencedDeclaration": 112,
+                            "src": "806:8:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_string_memory_ptr",
                               "typeString": "string memory"
@@ -674,18 +850,18 @@
                           ],
                           "expression": {
                             "argumentTypes": null,
-                            "id": 106,
+                            "id": 118,
                             "name": "abi",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 129,
-                            "src": "684:3:1",
+                            "referencedDeclaration": 141,
+                            "src": "789:3:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_abi",
                               "typeString": "abi"
                             }
                           },
-                          "id": 107,
+                          "id": 119,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -693,13 +869,13 @@
                           "memberName": "encodePacked",
                           "nodeType": "MemberAccess",
                           "referencedDeclaration": null,
-                          "src": "684:16:1",
+                          "src": "789:16:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
                             "typeString": "function () pure returns (bytes memory)"
                           }
                         },
-                        "id": 109,
+                        "id": 121,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -707,7 +883,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "684:26:1",
+                        "src": "789:26:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes_memory_ptr",
                           "typeString": "bytes memory"
@@ -721,18 +897,18 @@
                           "typeString": "bytes memory"
                         }
                       ],
-                      "id": 105,
+                      "id": 117,
                       "name": "sha256",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 151,
-                      "src": "677:6:1",
+                      "referencedDeclaration": 163,
+                      "src": "782:6:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_sha256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
                         "typeString": "function (bytes memory) pure returns (bytes32)"
                       }
                     },
-                    "id": 110,
+                    "id": 122,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -740,37 +916,37 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "677:34:1",
+                    "src": "782:34:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     }
                   },
-                  "functionReturnParameters": 104,
-                  "id": 111,
+                  "functionReturnParameters": 116,
+                  "id": 123,
                   "nodeType": "Return",
-                  "src": "670:41:1"
+                  "src": "775:41:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 113,
+            "id": 125,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "hash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 101,
+              "id": 113,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 100,
+                  "id": 112,
                   "name": "ipfshash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 113,
-                  "src": "607:22:1",
+                  "scope": 125,
+                  "src": "712:22:1",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -778,10 +954,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 99,
+                    "id": 111,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "607:6:1",
+                    "src": "712:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -791,19 +967,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "606:24:1"
+              "src": "711:24:1"
             },
             "returnParameters": {
-              "id": 104,
+              "id": 116,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 103,
+                  "id": 115,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 113,
-                  "src": "654:7:1",
+                  "scope": 125,
+                  "src": "759:7:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -811,10 +987,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 102,
+                    "id": 114,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "654:7:1",
+                    "src": "759:7:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -824,19 +1000,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "653:9:1"
+              "src": "758:9:1"
             },
-            "scope": 127,
-            "src": "593:125:1",
+            "scope": 139,
+            "src": "698:125:1",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 125,
+              "id": 137,
               "nodeType": "Block",
-              "src": "789:46:1",
+              "src": "894:53:1",
               "statements": [
                 {
                   "expression": {
@@ -845,26 +1021,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 120,
+                        "id": 132,
                         "name": "proofs",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 67,
-                        "src": "804:6:1",
+                        "referencedDeclaration": 73,
+                        "src": "909:6:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_proof_$72_storage_$",
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_proof_$78_storage_$",
                           "typeString": "mapping(uint256 => struct SimpleStorage.proof storage ref)"
                         }
                       },
-                      "id": 122,
+                      "id": 134,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 121,
+                        "id": 133,
                         "name": "_proofcount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 115,
-                        "src": "811:11:1",
+                        "referencedDeclaration": 127,
+                        "src": "916:11:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -875,51 +1051,51 @@
                       "isPure": false,
                       "lValueRequested": false,
                       "nodeType": "IndexAccess",
-                      "src": "804:19:1",
+                      "src": "909:19:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_proof_$72_storage",
+                        "typeIdentifier": "t_struct$_proof_$78_storage",
                         "typeString": "struct SimpleStorage.proof storage ref"
                       }
                     },
-                    "id": 123,
+                    "id": 135,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
                     "lValueRequested": false,
                     "memberName": "hash",
                     "nodeType": "MemberAccess",
-                    "referencedDeclaration": 69,
-                    "src": "804:24:1",
+                    "referencedDeclaration": 75,
+                    "src": "909:24:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     }
                   },
-                  "functionReturnParameters": 119,
-                  "id": 124,
+                  "functionReturnParameters": 131,
+                  "id": 136,
                   "nodeType": "Return",
-                  "src": "797:31:1"
+                  "src": "902:31:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 126,
+            "id": 138,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getProof",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 116,
+              "id": 128,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 115,
+                  "id": 127,
                   "name": "_proofcount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 126,
-                  "src": "742:16:1",
+                  "scope": 138,
+                  "src": "847:16:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -927,10 +1103,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 114,
+                    "id": 126,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "742:4:1",
+                    "src": "847:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -940,19 +1116,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "741:18:1"
+              "src": "846:18:1"
             },
             "returnParameters": {
-              "id": 119,
+              "id": 131,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 118,
+                  "id": 130,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 126,
-                  "src": "781:7:1",
+                  "scope": 138,
+                  "src": "886:7:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -960,10 +1136,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 117,
+                    "id": 129,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "781:7:1",
+                    "src": "886:7:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -973,29 +1149,29 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "780:9:1"
+              "src": "885:9:1"
             },
-            "scope": 127,
-            "src": "724:111:1",
+            "scope": 139,
+            "src": "829:118:1",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 128,
-        "src": "25:812:1"
+        "scope": 140,
+        "src": "25:924:1"
       }
     ],
-    "src": "0:839:1"
+    "src": "0:951:1"
   },
   "legacyAST": {
     "absolutePath": "/Users/leefaria/Documents/Code/finalproject/ipfsdemo/contracts/SimpleStorage.sol",
     "exportedSymbols": {
       "SimpleStorage": [
-        127
+        139
       ]
     },
-    "id": 128,
+    "id": 140,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -1015,9 +1191,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 127,
+        "id": 139,
         "linearizedBaseContracts": [
-          127
+          139
         ],
         "name": "SimpleStorage",
         "nodeType": "ContractDefinition",
@@ -1027,7 +1203,7 @@
             "id": 60,
             "name": "storedData",
             "nodeType": "VariableDeclaration",
-            "scope": 127,
+            "scope": 139,
             "src": "52:15:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1053,7 +1229,7 @@
             "id": 63,
             "name": "proofCount",
             "nodeType": "VariableDeclaration",
-            "scope": 127,
+            "scope": 139,
             "src": "95:26:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1092,45 +1268,115 @@
             "visibility": "public"
           },
           {
+            "anonymous": false,
+            "documentation": null,
+            "id": 69,
+            "name": "LogProofs",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 68,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 65,
+                  "indexed": false,
+                  "name": "adress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 69,
+                  "src": "140:14:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 64,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "140:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 67,
+                  "indexed": false,
+                  "name": "proof",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 69,
+                  "src": "156:13:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 66,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "156:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "139:31:1"
+            },
+            "src": "124:47:1"
+          },
+          {
             "constant": false,
-            "id": 67,
+            "id": 73,
             "name": "proofs",
             "nodeType": "VariableDeclaration",
-            "scope": 127,
-            "src": "124:36:1",
+            "scope": 139,
+            "src": "173:36:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_proof_$72_storage_$",
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_proof_$78_storage_$",
               "typeString": "mapping(uint256 => struct SimpleStorage.proof)"
             },
             "typeName": {
-              "id": 66,
+              "id": 72,
               "keyType": {
-                "id": 64,
+                "id": 70,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "132:4:1",
+                "src": "181:4:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "124:22:1",
+              "src": "173:22:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_proof_$72_storage_$",
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_proof_$78_storage_$",
                 "typeString": "mapping(uint256 => struct SimpleStorage.proof)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 65,
+                "id": 71,
                 "name": "proof",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 72,
-                "src": "140:5:1",
+                "referencedDeclaration": 78,
+                "src": "189:5:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_proof_$72_storage_ptr",
+                  "typeIdentifier": "t_struct$_proof_$78_storage_ptr",
                   "typeString": "struct SimpleStorage.proof"
                 }
               }
@@ -1140,15 +1386,15 @@
           },
           {
             "canonicalName": "SimpleStorage.proof",
-            "id": 72,
+            "id": 78,
             "members": [
               {
                 "constant": false,
-                "id": 69,
+                "id": 75,
                 "name": "hash",
                 "nodeType": "VariableDeclaration",
-                "scope": 72,
-                "src": "182:12:1",
+                "scope": 78,
+                "src": "231:12:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1156,10 +1402,10 @@
                   "typeString": "bytes32"
                 },
                 "typeName": {
-                  "id": 68,
+                  "id": 74,
                   "name": "bytes32",
                   "nodeType": "ElementaryTypeName",
-                  "src": "182:7:1",
+                  "src": "231:7:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bytes32",
                     "typeString": "bytes32"
@@ -1170,11 +1416,11 @@
               },
               {
                 "constant": false,
-                "id": 71,
+                "id": 77,
                 "name": "proofcount",
                 "nodeType": "VariableDeclaration",
-                "scope": 72,
-                "src": "200:15:1",
+                "scope": 78,
+                "src": "249:15:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1182,10 +1428,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 70,
+                  "id": 76,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "200:4:1",
+                  "src": "249:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1197,28 +1443,28 @@
             ],
             "name": "proof",
             "nodeType": "StructDefinition",
-            "scope": 127,
-            "src": "163:162:1",
+            "scope": 139,
+            "src": "212:162:1",
             "visibility": "public"
           },
           {
             "body": {
-              "id": 97,
+              "id": 109,
               "nodeType": "Block",
-              "src": "434:154:1",
+              "src": "483:210:1",
               "statements": [
                 {
                   "assignments": [
-                    78
+                    84
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 78,
+                      "id": 84,
                       "name": "proofhash",
                       "nodeType": "VariableDeclaration",
-                      "scope": 97,
-                      "src": "444:17:1",
+                      "scope": 109,
+                      "src": "493:17:1",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1226,10 +1472,10 @@
                         "typeString": "bytes32"
                       },
                       "typeName": {
-                        "id": 77,
+                        "id": 83,
                         "name": "bytes32",
                         "nodeType": "ElementaryTypeName",
-                        "src": "444:7:1",
+                        "src": "493:7:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -1239,18 +1485,18 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 82,
+                  "id": 88,
                   "initialValue": {
                     "argumentTypes": null,
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 80,
+                        "id": 86,
                         "name": "ipfshash",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 74,
-                        "src": "469:8:1",
+                        "referencedDeclaration": 80,
+                        "src": "518:8:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
                           "typeString": "string memory"
@@ -1264,18 +1510,18 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 79,
+                      "id": 85,
                       "name": "hash",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 113,
-                      "src": "464:4:1",
+                      "referencedDeclaration": 125,
+                      "src": "513:4:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$_t_string_memory_ptr_$returns$_t_bytes32_$",
                         "typeString": "function (string memory) view returns (bytes32)"
                       }
                     },
-                    "id": 81,
+                    "id": 87,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1283,27 +1529,27 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "464:14:1",
+                    "src": "513:14:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "444:34:1"
+                  "src": "493:34:1"
                 },
                 {
                   "assignments": [
-                    84
+                    90
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 84,
+                      "id": 90,
                       "name": "id",
                       "nodeType": "VariableDeclaration",
-                      "scope": 97,
-                      "src": "488:7:1",
+                      "scope": 109,
+                      "src": "537:7:1",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1311,10 +1557,10 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 83,
+                        "id": 89,
                         "name": "uint",
                         "nodeType": "ElementaryTypeName",
-                        "src": "488:4:1",
+                        "src": "537:4:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1324,10 +1570,10 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 87,
+                  "id": 93,
                   "initialValue": {
                     "argumentTypes": null,
-                    "id": 86,
+                    "id": 92,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1335,15 +1581,15 @@
                     "nodeType": "UnaryOperation",
                     "operator": "++",
                     "prefix": false,
-                    "src": "498:12:1",
+                    "src": "547:12:1",
                     "subExpression": {
                       "argumentTypes": null,
-                      "id": 85,
+                      "id": 91,
                       "name": "proofCount",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 63,
-                      "src": "498:10:1",
+                      "src": "547:10:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1355,12 +1601,12 @@
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "488:22:1"
+                  "src": "537:22:1"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 95,
+                    "id": 101,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1369,26 +1615,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 88,
+                        "id": 94,
                         "name": "proofs",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 67,
-                        "src": "520:6:1",
+                        "referencedDeclaration": 73,
+                        "src": "569:6:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_proof_$72_storage_$",
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_proof_$78_storage_$",
                           "typeString": "mapping(uint256 => struct SimpleStorage.proof storage ref)"
                         }
                       },
-                      "id": 90,
+                      "id": 96,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 89,
+                        "id": 95,
                         "name": "proofCount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 63,
-                        "src": "527:10:1",
+                        "src": "576:10:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1399,9 +1645,9 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "520:18:1",
+                      "src": "569:18:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_proof_$72_storage",
+                        "typeIdentifier": "t_struct$_proof_$78_storage",
                         "typeString": "struct SimpleStorage.proof storage ref"
                       }
                     },
@@ -1412,12 +1658,12 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 92,
+                          "id": 98,
                           "name": "proofhash",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 78,
-                          "src": "554:9:1",
+                          "referencedDeclaration": 84,
+                          "src": "603:9:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bytes32",
                             "typeString": "bytes32"
@@ -1425,12 +1671,12 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 93,
+                          "id": 99,
                           "name": "id",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 84,
-                          "src": "576:2:1",
+                          "referencedDeclaration": 90,
+                          "src": "625:2:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -1448,18 +1694,18 @@
                             "typeString": "uint256"
                           }
                         ],
-                        "id": 91,
+                        "id": 97,
                         "name": "proof",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 72,
-                        "src": "541:5:1",
+                        "referencedDeclaration": 78,
+                        "src": "590:5:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_struct$_proof_$72_storage_ptr_$",
+                          "typeIdentifier": "t_type$_t_struct$_proof_$78_storage_ptr_$",
                           "typeString": "type(struct SimpleStorage.proof storage pointer)"
                         }
                       },
-                      "id": 94,
+                      "id": 100,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1470,42 +1716,129 @@
                         "proofcount"
                       ],
                       "nodeType": "FunctionCall",
-                      "src": "541:40:1",
+                      "src": "590:40:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_proof_$72_memory",
+                        "typeIdentifier": "t_struct$_proof_$78_memory",
                         "typeString": "struct SimpleStorage.proof memory"
                       }
                     },
-                    "src": "520:61:1",
+                    "src": "569:61:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_proof_$72_storage",
+                      "typeIdentifier": "t_struct$_proof_$78_storage",
                       "typeString": "struct SimpleStorage.proof storage ref"
                     }
                   },
-                  "id": 96,
+                  "id": 102,
                   "nodeType": "ExpressionStatement",
-                  "src": "520:61:1"
+                  "src": "569:61:1"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 104,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 154,
+                          "src": "655:3:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 105,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "655:10:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 106,
+                        "name": "proofhash",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 84,
+                        "src": "667:9:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 103,
+                      "name": "LogProofs",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 69,
+                      "src": "645:9:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_bytes32_$returns$__$",
+                        "typeString": "function (address,bytes32)"
+                      }
+                    },
+                    "id": 107,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "645:32:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 108,
+                  "nodeType": "EmitStatement",
+                  "src": "640:37:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 98,
+            "id": 110,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "notarize",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 75,
+              "id": 81,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 74,
+                  "id": 80,
                   "name": "ipfshash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 98,
-                  "src": "402:22:1",
+                  "scope": 110,
+                  "src": "451:22:1",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1513,10 +1846,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 73,
+                    "id": 79,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "402:6:1",
+                    "src": "451:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -1526,25 +1859,25 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "401:25:1"
+              "src": "450:25:1"
             },
             "returnParameters": {
-              "id": 76,
+              "id": 82,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "434:0:1"
+              "src": "483:0:1"
             },
-            "scope": 127,
-            "src": "384:204:1",
+            "scope": 139,
+            "src": "433:260:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 112,
+              "id": 124,
               "nodeType": "Block",
-              "src": "662:56:1",
+              "src": "767:56:1",
               "statements": [
                 {
                   "expression": {
@@ -1555,12 +1888,12 @@
                         "arguments": [
                           {
                             "argumentTypes": null,
-                            "id": 108,
+                            "id": 120,
                             "name": "ipfshash",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 100,
-                            "src": "701:8:1",
+                            "referencedDeclaration": 112,
+                            "src": "806:8:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_string_memory_ptr",
                               "typeString": "string memory"
@@ -1576,18 +1909,18 @@
                           ],
                           "expression": {
                             "argumentTypes": null,
-                            "id": 106,
+                            "id": 118,
                             "name": "abi",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 129,
-                            "src": "684:3:1",
+                            "referencedDeclaration": 141,
+                            "src": "789:3:1",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_abi",
                               "typeString": "abi"
                             }
                           },
-                          "id": 107,
+                          "id": 119,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1595,13 +1928,13 @@
                           "memberName": "encodePacked",
                           "nodeType": "MemberAccess",
                           "referencedDeclaration": null,
-                          "src": "684:16:1",
+                          "src": "789:16:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_abiencodepacked_pure$__$returns$_t_bytes_memory_ptr_$",
                             "typeString": "function () pure returns (bytes memory)"
                           }
                         },
-                        "id": 109,
+                        "id": 121,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1609,7 +1942,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "684:26:1",
+                        "src": "789:26:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes_memory_ptr",
                           "typeString": "bytes memory"
@@ -1623,18 +1956,18 @@
                           "typeString": "bytes memory"
                         }
                       ],
-                      "id": 105,
+                      "id": 117,
                       "name": "sha256",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 151,
-                      "src": "677:6:1",
+                      "referencedDeclaration": 163,
+                      "src": "782:6:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_sha256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
                         "typeString": "function (bytes memory) pure returns (bytes32)"
                       }
                     },
-                    "id": 110,
+                    "id": 122,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1642,37 +1975,37 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "677:34:1",
+                    "src": "782:34:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     }
                   },
-                  "functionReturnParameters": 104,
-                  "id": 111,
+                  "functionReturnParameters": 116,
+                  "id": 123,
                   "nodeType": "Return",
-                  "src": "670:41:1"
+                  "src": "775:41:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 113,
+            "id": 125,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "hash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 101,
+              "id": 113,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 100,
+                  "id": 112,
                   "name": "ipfshash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 113,
-                  "src": "607:22:1",
+                  "scope": 125,
+                  "src": "712:22:1",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1680,10 +2013,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 99,
+                    "id": 111,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "607:6:1",
+                    "src": "712:6:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -1693,19 +2026,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "606:24:1"
+              "src": "711:24:1"
             },
             "returnParameters": {
-              "id": 104,
+              "id": 116,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 103,
+                  "id": 115,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 113,
-                  "src": "654:7:1",
+                  "scope": 125,
+                  "src": "759:7:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1713,10 +2046,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 102,
+                    "id": 114,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "654:7:1",
+                    "src": "759:7:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1726,19 +2059,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "653:9:1"
+              "src": "758:9:1"
             },
-            "scope": 127,
-            "src": "593:125:1",
+            "scope": 139,
+            "src": "698:125:1",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 125,
+              "id": 137,
               "nodeType": "Block",
-              "src": "789:46:1",
+              "src": "894:53:1",
               "statements": [
                 {
                   "expression": {
@@ -1747,26 +2080,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 120,
+                        "id": 132,
                         "name": "proofs",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 67,
-                        "src": "804:6:1",
+                        "referencedDeclaration": 73,
+                        "src": "909:6:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_proof_$72_storage_$",
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_proof_$78_storage_$",
                           "typeString": "mapping(uint256 => struct SimpleStorage.proof storage ref)"
                         }
                       },
-                      "id": 122,
+                      "id": 134,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 121,
+                        "id": 133,
                         "name": "_proofcount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 115,
-                        "src": "811:11:1",
+                        "referencedDeclaration": 127,
+                        "src": "916:11:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1777,51 +2110,51 @@
                       "isPure": false,
                       "lValueRequested": false,
                       "nodeType": "IndexAccess",
-                      "src": "804:19:1",
+                      "src": "909:19:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_proof_$72_storage",
+                        "typeIdentifier": "t_struct$_proof_$78_storage",
                         "typeString": "struct SimpleStorage.proof storage ref"
                       }
                     },
-                    "id": 123,
+                    "id": 135,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
                     "lValueRequested": false,
                     "memberName": "hash",
                     "nodeType": "MemberAccess",
-                    "referencedDeclaration": 69,
-                    "src": "804:24:1",
+                    "referencedDeclaration": 75,
+                    "src": "909:24:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     }
                   },
-                  "functionReturnParameters": 119,
-                  "id": 124,
+                  "functionReturnParameters": 131,
+                  "id": 136,
                   "nodeType": "Return",
-                  "src": "797:31:1"
+                  "src": "902:31:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 126,
+            "id": 138,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getProof",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 116,
+              "id": 128,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 115,
+                  "id": 127,
                   "name": "_proofcount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 126,
-                  "src": "742:16:1",
+                  "scope": 138,
+                  "src": "847:16:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1829,10 +2162,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 114,
+                    "id": 126,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "742:4:1",
+                    "src": "847:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1842,19 +2175,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "741:18:1"
+              "src": "846:18:1"
             },
             "returnParameters": {
-              "id": 119,
+              "id": 131,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 118,
+                  "id": 130,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 126,
-                  "src": "781:7:1",
+                  "scope": 138,
+                  "src": "886:7:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1862,10 +2195,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 117,
+                    "id": 129,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "781:7:1",
+                    "src": "886:7:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1875,20 +2208,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "780:9:1"
+              "src": "885:9:1"
             },
-            "scope": 127,
-            "src": "724:111:1",
+            "scope": 139,
+            "src": "829:118:1",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 128,
-        "src": "25:812:1"
+        "scope": 140,
+        "src": "25:924:1"
       }
     ],
-    "src": "0:839:1"
+    "src": "0:951:1"
   },
   "compiler": {
     "name": "solc",
@@ -1896,10 +2229,31 @@
   },
   "networks": {
     "4447": {
-      "events": {},
+      "events": {
+        "0x4adcc1b3465158954cf2f274f9f107cde1dc31e8079e1d568c3beb0c8f09af51": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "adress",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "proof",
+              "type": "bytes32"
+            }
+          ],
+          "name": "LogProofs",
+          "type": "event",
+          "signature": "0x4adcc1b3465158954cf2f274f9f107cde1dc31e8079e1d568c3beb0c8f09af51"
+        }
+      },
       "links": {},
-      "address": "0xdd123a2427036519E21ac81A37E8B1aB74E92A38",
-      "transactionHash": "0x517211fb3c61b7649e8639ec8621e18022391c58f76770cabfb9f93045e32c12"
+      "address": "0xC4108524e96bf957Ea73c748a0dB54d6cB59c8e8",
+      "transactionHash": "0x766729037a625a2febcd3c117578feb9f2fa2c749ba5921dfda29ffe12fc348d"
     },
     "5777": {
       "events": {},
@@ -1909,7 +2263,7 @@
     }
   },
   "schemaVersion": "3.0.18",
-  "updatedAt": "2020-01-13T05:24:45.210Z",
+  "updatedAt": "2020-01-17T01:14:39.975Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

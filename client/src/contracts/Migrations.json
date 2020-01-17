@@ -1375,8 +1375,8 @@
     "4447": {
       "events": {},
       "links": {},
-      "address": "0xc91B9a21c38DD0138BA296E21bef4b4b3BE51320",
-      "transactionHash": "0x5ccd63e80f8e3947bac696a5e2900b9353b180b94a556723ad0e36c59dbdcf52"
+      "address": "0xE8534De2dAB48B7EB784f9341Ba774a6b591ad7d",
+      "transactionHash": "0x087eff8137db85fe8719505173fe0540af4444b41a0e2a9a5146513bcd558869"
     },
     "5777": {
       "events": {},
@@ -1386,7 +1386,7 @@
     }
   },
   "schemaVersion": "3.0.18",
-  "updatedAt": "2020-01-13T05:24:45.217Z",
+  "updatedAt": "2020-01-17T01:14:39.977Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

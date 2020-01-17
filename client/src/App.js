@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import getWeb3 from "./utils/getWeb3";
-//import IPFS from './ipfs.js'
 import "./App.css";
 import ipfs from "./ipfs.js";
 import { Card, Heading, Text, Button, Box, Flex } from 'rimble-ui';
@@ -28,6 +27,17 @@ class App extends Component {
         SimpleStorageContract.abi,
         deployedNetwork && deployedNetwork.address,
       );
+
+      // this.state.contract.LogProofs({}, { fromBlock: 0, toBlock: 'latest' }).get((error, eventResult) => {
+      //   if (error)
+      //     console.log('Error in myEvent event handler: ' + error);
+      //   else
+      //     console.log('myEvent: ' + JSON.stringify(eventResult.args));
+      // });
+
+      instance.events.LogProofs((error, event)=>{
+        console.log(event.returnValues[0])
+      })
     
 
       // Set web3, accounts, and contract to the state, and then proceed with an
