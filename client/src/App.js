@@ -35,8 +35,16 @@ class App extends Component {
       //     console.log('myEvent: ' + JSON.stringify(eventResult.args));
       // });
 
-      instance.events.LogProofs((error, event)=>{
-        console.log(event.returnValues[0])
+      instance.events.LogProofs({
+        filter: {address: [this.state.accounts]}, // Using an array means OR: e.g. 20 or 23
+        fromBlock: 0,
+        toBlock: 'latest'
+    }, (error, event)=>{
+      if(event.returnValues[0] == this.state.accounts[0]){
+        console.log(event.returnValues[1])
+      }else
+        console.log("wrong account buddy!")
+
       })
     
 
@@ -153,7 +161,7 @@ async getProof() {
       
       //console.log('store',store)
       console.log("IPFS Hash:", this.state.ipfsHash)
-      console.log("IPFS Hash TYPE:", typeof this.state.ipfsHash)
+      //console.log("IPFS Hash TYPE:", typeof this.state.ipfsHash)
       //console.log("Storage Value:",this.state.storageValue)
     })
   };
