@@ -7,6 +7,8 @@ contract SimpleStorage {
 
 uint public proofCount = 0;
 
+event LogProofs(address adress, bytes32 proof);
+
 mapping(uint => proof) public proofs;
 
 struct proof {
@@ -24,6 +26,8 @@ struct proof {
         bytes32 proofhash = hash(ipfshash);
         uint id = proofCount++;
         proofs[proofCount] = proof({hash: proofhash, proofcount:id });
+        emit LogProofs(msg.sender, proofhash);
+        
     }
     function hash(string memory ipfshash) internal view returns (bytes32){
       return sha256(abi.encodePacked(ipfshash));
@@ -31,6 +35,7 @@ struct proof {
 
     function getProof(uint _proofcount)  public view returns(bytes32){
       return proofs[_proofcount].hash;
+      
     }
 }
 
