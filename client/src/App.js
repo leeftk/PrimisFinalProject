@@ -3,14 +3,15 @@ import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import getWeb3 from "./utils/getWeb3";
 import "./App.css";
 import ipfs from "./ipfs.js";
-import { Card, Heading, Text, Button, Box, Flex } from 'rimble-ui';
-import { Input } from 'rimble-ui';
+import { Card, Heading, Text, Button, Box, Flex, TransferWithinAStation } from 'rimble-ui';
+import { Input, Table } from 'rimble-ui';
 import Image from 'react-bootstrap/Image';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import logo from "./img/logo.jpg"
 
 class App extends Component {
-  state = { storageValue: null, web3: null, accounts: null, contract: null, ipfsHash : null, buffer: null, proofs: [], proofcount: null };
+  state = { storageValue: null, web3: null, accounts: null, contract: null, ipfsHash : null, buffer: null, proofs: [], proofcount: null, 
+    cardUpload: "Upload your file here. Primis will securley store your file and allow you to prove ownership over the file using blockchain. Files will never be uploaded to the blockchain. Only a cryptographically  secure hash of the file."};
 
   componentDidMount = async () => {
     try {
@@ -28,15 +29,7 @@ class App extends Component {
         deployedNetwork && deployedNetwork.address,
       );
 
-      // this.state.contract.LogProofs({}, { fromBlock: 0, toBlock: 'latest' }).get((error, eventResult) => {
-      //   if (error)
-      //     console.log('Error in myEvent event handler: ' + error);
-      //   else
-      //     console.log('myEvent: ' + JSON.stringify(eventResult.args));
-      // });
-
-//       const entries = Object.entries(fruits)
-// console.log(entries)
+    
         let result = []
       instance.events.LogProofs({
         filter: {address: [this.state.accounts]}, // Using an array means OR: e.g. 20 or 23
@@ -53,6 +46,7 @@ class App extends Component {
 
       })
     console.log(result)
+    this.setState({ result: result })
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
@@ -110,13 +104,53 @@ class App extends Component {
   // const response = this.state.contract.methods.proof().call();
   //  console.log("the hash",this.state.ipfsHash)
 
- this.state.contract.methods.notarize(content).send({ from: this.state.accounts[0] }).on("receipt", function(){
-   console.log("Receipt of notary");
- });
+ this.state.contract.methods.notarize(content).send({ from: this.state.accounts[0] }).once('receipt', (receipt) => {
+       this.updateState()
+});
+ 
+   
+
 //  console.log("response:", response)
  };
 
 //
+updateState() {
+      //renders html of a list inside of a containter once button is clicked
+      this.setState({
+       cardUpload: 
+         (<Table>
+          <thead>
+            <tr>
+              <th>Transaction hash</th>
+              <th>Value</th>
+              <th>Recipient</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{this.state.result[0]}</td>
+              <td>0.10 ETH</td>
+              <td>0x4fe...581</td>
+              <td>March 28 2019 08:47:17 AM +UTC</td>
+            </tr>
+            <tr>
+              <td>0xsb...230</td>
+              <td>0.11 ETH</td>
+              <td>0x4gj...1e1</td>
+              <td>March 28 2019 08:52:17 AM +UTC</td>
+            </tr>
+            <tr>
+              <td>0xed...c40</td>
+              <td>0.12 ETH</td>
+              <td>0x3fd...781</td>
+              <td>March 28 2019 08:55:17 AM +UTC</td>
+            </tr>
+          </tbody>
+        </Table>)
+        
+      });
+   }
 
  //helper function
  captureFile = (event) =>{
@@ -158,6 +192,7 @@ async getProof() {
       console.log(err,ipfsHash);
       this.setState({ ipfsHash: ipfsHash[0].hash })
       this.notarize(ipfsHash[0].hash)
+      
       //this.
       // const proof = this.state.contract.methods.getProof(1).send({ from: this.state.accounts[0] }).on("receipt", function(){
       //   this.setState({ proof: proof })
@@ -170,6 +205,7 @@ async getProof() {
       //console.log("IPFS Hash TYPE:", typeof this.state.ipfsHash)
       //console.log("Storage Value:",this.state.storageValue)
     })
+    
   };
 
   
@@ -199,9 +235,7 @@ async getProof() {
         <Box p={3} width={1 / 2} >
         <Heading  ml={200} mt={50} pb={10} as={"h2"} fontSize={32} textAlign={'left'} fontFamily="sansSerif" fontStyle={'normal'} fontWeight={400} alignItems={'center'} 
          >Upload a file </Heading>
-        <Text.p ml={200} lineHeight={1.3} textAlign={'left'}>Upload your file here. Primis will securley store your file and allow you to prove ownership 
-          over the file using blockchain. Files will never be uploaded to the blockchain. Only a cryptographically 
-          secure hash of the file.</Text.p>
+        <Text.p ml={200} lineHeight={1.3} textAlign={'left'}>{this.state.cardUpload}</Text.p>
         </Box>
         <Box p={3} width={1 / 2} >
         <Card ml={200} mt={20} width={'420px'}  px={4}>
