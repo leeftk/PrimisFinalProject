@@ -45,13 +45,20 @@ class App extends Component {
         const entries = Object.entries(event.returnValues)
         //console.log(entries[3])
       result.push(entries[3])
-        //console.log(event.returnValues[2])
+        let resultItems = []
+        for(let i= 1; i <= entries.length; i++){
+        //console.log(event.returnValues[i])
+        resultItems.push(event.returnValues[i])
+        }
+        console.log(resultItems[0])
+        this.setState({ resultItems: resultItems})
       }else
         console.log("wrong account buddy!")
 
       })
     console.log(result)
     this.setState({ result: result })
+    
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
@@ -114,7 +121,7 @@ updateState() {
   </thead>
   <tbody>
     <tr>
-      <td>0xeb...cc0</td>
+      <td>{this.state.resultItems[0].slice(0,5) + "..." + this.state.resultItems[0].slice(27,32)}</td>
       <td>0.10 ETH</td>
       <td>0x4fe...581</td>
       <td>March 28 2019 08:47:17 AM +UTC</td>
