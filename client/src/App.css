@@ -49,6 +49,24 @@
     transform: rotate(360deg);
   }
 }
-.cardleft{
-  background: pink;
+
+.tableCard{
+  
 }
+
+
+.table{
+  width: 25%;
+  max-width: 25%;
+
+}
+
+.inputUpload{
+  max-width: 50%;
+  background:pink;
+}
+
+.cardLeft{
+  width:50%;
+}
+

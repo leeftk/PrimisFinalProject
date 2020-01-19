@@ -8,11 +8,15 @@ import { Input, Table } from 'rimble-ui';
 import Image from 'react-bootstrap/Image';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { runExample } from './utils/utils.js';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import InputGroup from 'react-bootstrap/InputGroup'
 //import logo from "./img/logo.jpg"
 
 class App extends Component {
   state = { storageValue: null, web3: null, accounts: null, contract: null, ipfsHash : null, buffer: null, proofs: [], proofcount: null, 
-    cardUpload: "Upload your file here. Primis will securley store your file and allow you to prove ownership over the file using blockchain. Files will never be uploaded to the blockchain. Only a cryptographically  secure hash of the file."};
+    cardUpload: (<Text.p ml={0} lineHeight={1.3} textAlign={'left'}>"Upload your file here. Primis will securley store your file and allow you to prove ownership over the file using blockchain. Files will never be uploaded to the blockchain. Only a cryptographically  secure hash of the file."</Text.p>)};
 
   componentDidMount = async () => {
     try {
@@ -91,37 +95,49 @@ updateState() {
        cardUpload: 
 
          (
-         <Table>
-          <thead>
-            <tr>
-              <th>Transaction hash</th>
-              <th>Value</th>
-              <th>Recipient</th>
-              <th>Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{this.state.result[0]}</td>
-              <td>0.10 ETH</td>
-              <td>0x4fe...581</td>
-              <td>March 28 2019 08:47:17 AM +UTC</td>
-            </tr>
-            <tr>
-              <td>0xsb...230</td>
-              <td>0.11 ETH</td>
-              <td>0x4gj...1e1</td>
-              <td>March 28 2019 08:52:17 AM +UTC</td>
-            </tr>
-            <tr>
-              <td>0xed...c40</td>
-              <td>0.12 ETH</td>
-              <td>0x3fd...781</td>
-              <td>March 28 2019 08:55:17 AM +UTC</td>
-            </tr>
-          </tbody>
-        </Table>
-       
+        <Container>
+                     <Card  md={7} width={'73%'} >
+                    <div className="table">
+                    
+
+         
+         
+        
+         <Table width={'100%'}>
+  <thead>
+    <tr>
+      <th>Transaction hash</th>
+      <th>Value</th>
+      <th>Recipient</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0xeb...cc0</td>
+      <td>0.10 ETH</td>
+      <td>0x4fe...581</td>
+      <td>March 28 2019 08:47:17 AM +UTC</td>
+    </tr>
+    <tr>
+      <td>0xsb...230</td>
+      <td>0.11 ETH</td>
+      <td>0x4gj...1e1</td>
+      <td>March 28 2019 08:52:17 AM +UTC</td>
+    </tr>
+    <tr>
+      <td>0xed...c40</td>
+      <td>0.12 ETH</td>
+      <td>0x3fd...781</td>
+      <td>March 28 2019 08:55:17 AM +UTC</td>
+    </tr>
+  </tbody>
+</Table>
+
+
+</div>
+</Card>
+</Container>
         )
         
       });
@@ -192,62 +208,60 @@ async getProof() {
     }
     //console.log(this.state.buffer)
     return (
+      
       <div className="App">
         <div className="boxheading">
-        <Box  >
-        
+        <Box>
           <Text fontSize={48} fontFamily='sansSerif' fontWeight={400} 
          color={"#F4F4F4"}><div className="title">Primis
          <Image fluid />
-         </div></Text>
-      
+         </div>
+         </Text>
         </Box>
         </div>
         <Box p={6.5}  bg={'#4E3FCE'} height={0} >
         </Box>
-
-        <Flex>
-        <Box p={3} width={1 / 2} >
-        <Heading  ml={200} mt={50} pb={10} as={"h2"} fontSize={32} textAlign={'left'} fontFamily="sansSerif" fontStyle={'normal'} fontWeight={400} alignItems={'center'} 
-         >Upload a file </Heading>
-        <Text.p ml={200} lineHeight={1.3} textAlign={'left'}>{this.state.cardUpload}</Text.p>
-        </Box>
-        <Box p={3} width={1 / 2} >
-        <Card ml={200} mt={20} width={'420px'}  px={4}>
-          <Heading pb={30} as={"h4"}  textAlign={'center'}>Upload your Document here</Heading>
-        <Box border='1px dashed #CCCCCC' boxSizing={'border-box'} borderWidth={1} p={3} width={[2, 2, 1]} bg={'#ECEAEA'}  >
-        <Input type="file" onChange = {this.captureFile} />
-        </Box>
-        <Box pb={20}></Box>
-        <Button onClick={this.ipfsSubmit}> Submit</Button>
-        <Button onClick={this.getProof}> proof</Button>
-        </Card>
-        </Box>
-      </Flex>
-       
-   
-        {/* <h1>Good to Go!</h1>
-        <p>Your Truffle Box is installed and ready.</p>
-        <h2>Smart Contract Example</h2>
-        <p>
-          If your contracts compiled and migrated successfully, below will show
-          a stored value of 5 (by default).
-        </p>
-        <p>
-          Try changing the value stored on <strong>line 40</strong> of App.js.
-        </p>
-        <form onSubmit={this.ipfsSubmit}>
-        <input type="file" onChange = {this.captureFile}/>
-        <Button size={'medium'}>Submit</Button>;
-        </form>
-        <p>
-          run ipfs daemon in a seperate terminal window/*
-          Try uploading a file to IPFS while you have an IPFS daemon running!!
-          If you see the IPFS hash in the console then the file was upload successfully!
-        </p>
-        <div>The stored value is: {this.state.storageValue} the ipfs version is {this.state.ipfshash}</div>
-       <a href={"https://gateway.ipfs.io/ipfs/" + this.state.ipfsHash}>Click to see on IPFS. </a> 
-         */}
+           <Container>
+                  <Row>
+                    <Col sm={7}>
+                     <Heading  mt={"10%"} pb={"5%"} as={"h2"} fontSize={32} textAlign={'left'} fontFamily="sansSerif" fontStyle={'normal'} fontWeight={400} alignItems={'center'} 
+                            >Upload a file </Heading>
+                      {this.state.cardUpload}
+               </Col>
+              <Col sm={5}> 
+              <Card  mt={'25%'}>
+              <Container>               
+                <Row>
+                  <Col>
+                  <Heading pb={30} as={"h4"} width={'100%'} textAlign={'center'}> Upload your Document here</Heading>
+              </Col>
+                </Row>
+                <Row>
+                  <Col>
+                  <Container>
+                  <Box width={'100%'} border='1px dashed #CCCCCC' boxSizing={'border-box'} borderWidth={1} p={3}  bg={'#ECEAEA'} >
+                      <Input className="mb-3"  type="file" onChange = {this.captureFile} />
+                      </Box>
+                    
+                      </Container>
+                      </Col>
+                </Row>
+                <Row>
+                  <Col> <Box pb={20}></Box> </Col>
+                </Row>
+                <Row>
+                  <Col>   <Button onClick={this.ipfsSubmit}> Submit</Button>
+                      <Button onClick={this.getProof}> Get Proof</Button></Col>
+                </Row>
+                <Row>
+                  <Col > <Box pb={20}></Box> </Col>
+                </Row>
+              </Container>
+                  </Card>   
+                      </Col> 
+                                </Row>          
+                              </Container>
+ 
 
       
         
