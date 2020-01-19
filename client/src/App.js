@@ -7,6 +7,7 @@ import { Card, Heading, Text, Button, Box, Flex, TransferWithinAStation } from '
 import { Input, Table } from 'rimble-ui';
 import Image from 'react-bootstrap/Image';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { runExample } from './utils/utils.js';
 //import logo from "./img/logo.jpg"
 
 class App extends Component {
@@ -61,37 +62,7 @@ class App extends Component {
   };
   
 
-  runExample = async () => {
-    const { accounts, contract } = this.state;
-
-    // Stores a given value, 5 by default.
-    
-
-    // Get the value from the contract to prove it worked.
-    //const response = await contract.methods.proof().call();
-    //console.log(response)
-    // Update state with the result.
-    //this.setState({ storageValue: response });
-    const proofCount = await contract.methods.proofCount().call()
-    this.setState({ proofcount: proofCount }, function (){
-      console.log("ProofCount:",proofCount);
-    })
-   
-    let result = []
-    for(var i = 1; i <= proofCount;i++){
-      const proof =  await this.state.contract.methods.getProof(i).call()
-      result.push(proof)
-      this.setState({ proofs: [...this.state.proofs, result ]})
-    }
-    console.log(result)
-   
-   
-    this.getProof = this.getProof.bind(this);
-
-    
-      
-          
-  };
+  
 
   convertToBuffer = async(reader) => {
     const buffer = await ipfs.Buffer.from(reader.result);
@@ -118,7 +89,9 @@ updateState() {
       //renders html of a list inside of a containter once button is clicked
       this.setState({
        cardUpload: 
-         (<Table>
+
+         (
+         <Table>
           <thead>
             <tr>
               <th>Transaction hash</th>
@@ -147,7 +120,9 @@ updateState() {
               <td>March 28 2019 08:55:17 AM +UTC</td>
             </tr>
           </tbody>
-        </Table>)
+        </Table>
+       
+        )
         
       });
    }
