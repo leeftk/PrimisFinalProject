@@ -2,6 +2,8 @@ const SimpleStorage = artifacts.require("./SimpleStorage.sol");
 const {
   catchRevert
 } = require('../utils/helpers');
+const truffleAssert = require('truffle-assertions');
+
 
 contract("SimpleStorage", accounts => {
   it("creates a hash, verifies hash is not equal to 0", async () => {
