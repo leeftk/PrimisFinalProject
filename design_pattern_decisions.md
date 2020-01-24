@@ -1,0 +1,1 @@
+The design patter for this project was chosen with the the dapp users best experience in mind. For this reason I used rimble ui for my components and used boostraps grid.

@@ -2428,11 +2428,31 @@
           "name": "LogProofs",
           "type": "event",
           "signature": "0x4adcc1b3465158954cf2f274f9f107cde1dc31e8079e1d568c3beb0c8f09af51"
+        },
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event",
+          "signature": "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0"
         }
       },
       "links": {},
-      "address": "0xB9E833613dF649C525994a93AE0229924F3616Bd",
-      "transactionHash": "0x071c3d1ae81a218f6455b278e0dcb3ad898f424d36874c355bb2d1e4cac1c40a"
+      "address": "0x29f8b8EF3fc9D6968EC83c9D81bfEeA466dC0d77",
+      "transactionHash": "0xd4b077b3dd794234d7162e8fa9b95b54b4c536f8fb7a7798c9746803d46d4446"
     },
     "5777": {
       "events": {},
@@ -2442,7 +2462,8 @@
     }
   },
   "schemaVersion": "3.0.18",
-  "updatedAt": "2020-01-24T01:13:30.289Z",
+  "updatedAt": "2020-01-24T01:14:54.461Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {
       "isOwner()": {
