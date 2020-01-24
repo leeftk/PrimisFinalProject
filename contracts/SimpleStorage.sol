@@ -1,6 +1,9 @@
 pragma solidity ^0.5.0;
 
-contract SimpleStorage {
+import "@openzeppelin/contracts/ownership/Ownable.sol";
+
+
+contract SimpleStorage is Ownable{
   uint storedData;
 
 //bytes32 public proof;
@@ -33,7 +36,7 @@ struct proof {
       return sha256(abi.encodePacked(ipfshash));
     }
 
-    function getProof(uint _proofcount)  public view returns(bytes32){
+    function getProof(uint _proofcount)  public view onlyOwner returns(bytes32)  {
       return proofs[_proofcount].hash;
       
     }

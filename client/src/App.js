@@ -16,7 +16,9 @@ import InputGroup from 'react-bootstrap/InputGroup'
 
 class App extends Component {
   state = { storageValue: null, web3: null, accounts: null, contract: null, ipfsHash : null, buffer: null, proofs: [], proofcount: null, 
-    cardUpload: (<Text.p ml={0} lineHeight={1.3} textAlign={'left'}>"Upload your file here. Primis will securley store your file and allow you to prove ownership over the file using blockchain. Files will never be uploaded to the blockchain. Only a cryptographically  secure hash of the file."</Text.p>)};
+    cardUpload: (<Text.p ml={0} lineHeight={1.3} textAlign={'left'}>
+      "Upload your file here. Primis will securley store your file and allow you to prove ownership over the file using blockchain. 
+        Files will never be uploaded to the blockchain. Only a cryptographically  secure hash of the file."</Text.p>)};
 
   componentDidMount = async () => {
     try {
@@ -43,26 +45,26 @@ class App extends Component {
     }, (error, event)=>{
       if(event.returnValues[0] == this.state.accounts){
         const entries = Object.entries(event.returnValues)
-        //console.log(entries[3])
-      result.push(entries[3])
+        console.log(event.returnValues.proof)
+       
+      result.push(event.returnValues.proof)
         let resultItems = []
         for(let i= 1; i <= entries.length; i++){
         //console.log(event.returnValues[i])
         resultItems.push(event.returnValues[i])
         }
-        console.log(resultItems[0])
+        console.log(result)
         this.setState({ resultItems: resultItems})
       }else
         console.log("wrong account buddy!")
 
       })
-    console.log(result)
     this.setState({ result: result })
     
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
-      this.setState({ web3, accounts, contract: instance }, this.runExample);
+      this.setState({ web3, accounts, contract: instance }) //runExample);
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -99,28 +101,20 @@ updateState() {
                     <thead>
                       <tr>
                         <th>Transaction hash</th>
-                        <th>Value</th>
-                        <th>Recipient</th>
                         <th>Time</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>{this.state.resultItems[0].slice(0,5) + "..." + this.state.resultItems[0].slice(27,32)}</td>
-                        <td>0.10 ETH</td>
-                        <td>0x4fe...581</td>
+                        <td>{this.state.result[0].slice(0,10) + "..." + this.state.result[0].slice(22,32)}</td>
                         <td>March 28 2019 08:47:17 AM +UTC</td>
                       </tr>
                       <tr>
-                        <td>0xsb...230</td>
-                        <td>0.11 ETH</td>
-                        <td>0x4gj...1e1</td>
+                        <td>{this.state.result[1].slice(0,10) + "..." + this.state.result[0].slice(22,32)}</td>
                         <td>March 28 2019 08:52:17 AM +UTC</td>
                       </tr>
                       <tr>
-                        <td>0xed...c40</td>
-                        <td>0.12 ETH</td>
-                        <td>0x3fd...781</td>
+                        <td>{this.state.result[2].slice(0,10) + "..." + this.state.result[2].slice(22,32)}</td>
                         <td>March 28 2019 08:55:17 AM +UTC</td>
                       </tr>
                     </tbody>
