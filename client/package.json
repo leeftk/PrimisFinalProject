@@ -13,6 +13,7 @@
     "react-scripts": "2.1.1",
     "rimble-ui": "^0.11.1",
     "styled-components": "^4.4.1",
+    "truffle-security": "^1.6.2",
     "web3": "^1.2.2"
   },
   "scripts": {
