@@ -71,83 +71,66 @@ class App extends Component {
       console.error(error);
     }
   };
-  
-
-  
-
+//converts file submitted to a buffer
   convertToBuffer = async(reader) => {
     const buffer = await ipfs.Buffer.from(reader.result);
     this.setState({buffer});
     console.log(buffer)
   };
   
- //converts file submitted to a buffer
+ //notarizes the ipfs hash of the file and on receipt runs updateState function
  notarize(content){
-  // const response = this.state.contract.methods.proof().call();
-  //  console.log("the hash",this.state.ipfsHash)
-
  this.state.contract.methods.notarize(content).send({ from: this.state.accounts[0] }).once('receipt', (receipt) => {
        this.updateState()
 });
- 
-   
 
-//  console.log("response:", response)
  };
 
-//
 updateState() {
-      //renders html of a list inside of a containter once button is clicked
+      //renders JSX table displaying users proofs once button is clicked
       this.setState({
        cardUpload: 
 
          (
         <Container>
-                     <Card  md={7} width={'73%'} >
-                    <div className="table">
-                    
-
-         
-         
-        
-         <Table width={'100%'}>
-  <thead>
-    <tr>
-      <th>Transaction hash</th>
-      <th>Value</th>
-      <th>Recipient</th>
-      <th>Time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{this.state.resultItems[0].slice(0,5) + "..." + this.state.resultItems[0].slice(27,32)}</td>
-      <td>0.10 ETH</td>
-      <td>0x4fe...581</td>
-      <td>March 28 2019 08:47:17 AM +UTC</td>
-    </tr>
-    <tr>
-      <td>0xsb...230</td>
-      <td>0.11 ETH</td>
-      <td>0x4gj...1e1</td>
-      <td>March 28 2019 08:52:17 AM +UTC</td>
-    </tr>
-    <tr>
-      <td>0xed...c40</td>
-      <td>0.12 ETH</td>
-      <td>0x3fd...781</td>
-      <td>March 28 2019 08:55:17 AM +UTC</td>
-    </tr>
-  </tbody>
-</Table>
-
-
-</div>
-</Card>
-</Container>
-        )
-        
-      });
+            <Card  md={7} width={'73%'} >
+              <div className="table">
+                <Table width={'100%'}>
+                    <thead>
+                      <tr>
+                        <th>Transaction hash</th>
+                        <th>Value</th>
+                        <th>Recipient</th>
+                        <th>Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{this.state.resultItems[0].slice(0,5) + "..." + this.state.resultItems[0].slice(27,32)}</td>
+                        <td>0.10 ETH</td>
+                        <td>0x4fe...581</td>
+                        <td>March 28 2019 08:47:17 AM +UTC</td>
+                      </tr>
+                      <tr>
+                        <td>0xsb...230</td>
+                        <td>0.11 ETH</td>
+                        <td>0x4gj...1e1</td>
+                        <td>March 28 2019 08:52:17 AM +UTC</td>
+                      </tr>
+                      <tr>
+                        <td>0xed...c40</td>
+                        <td>0.12 ETH</td>
+                        <td>0x3fd...781</td>
+                        <td>March 28 2019 08:55:17 AM +UTC</td>
+                      </tr>
+                    </tbody>
+                </Table>
+              </div>
+            </Card>
+        </Container>
+                        )
+                        
+                      });
    }
 
  //helper function
@@ -158,9 +141,8 @@ updateState() {
   let reader = new window.FileReader()
   reader.readAsArrayBuffer(file)
   reader.onloadend = () => this.convertToBuffer(reader)
-  //this.setState({buffer:reader})
 };
- 
+ //awaits and logs proof on click
 async getProof() {
   const proofCount = await this.state.contract.methods.proofCount().call()
   this.setState({ proofcount: proofCount }, function (){
@@ -175,9 +157,7 @@ async getProof() {
   }
   console.log(result)
 }
- 
-  
-
+ //adds buffer of file to ipfs network
   ipfsSubmit = async (event) => {
     event.preventDefault();
 
@@ -190,18 +170,8 @@ async getProof() {
       console.log(err,ipfsHash);
       this.setState({ ipfsHash: ipfsHash[0].hash })
       this.notarize(ipfsHash[0].hash)
-      
-      //this.
-      // const proof = this.state.contract.methods.getProof(1).send({ from: this.state.accounts[0] }).on("receipt", function(){
-      //   this.setState({ proof: proof })
-      //   console.log("Proof:", proof);
-      // });
-  
-      
-      //console.log('store',store)
       console.log("IPFS Hash:", this.state.ipfsHash)
-      //console.log("IPFS Hash TYPE:", typeof this.state.ipfsHash)
-      //console.log("Storage Value:",this.state.storageValue)
+
     })
     
   };
@@ -229,45 +199,47 @@ async getProof() {
         <Box p={6.5}  bg={'#4E3FCE'} height={0} >
         </Box>
            <Container>
-                  <Row>
+                <Row>
                     <Col sm={7}>
                      <Heading  mt={"10%"} pb={"5%"} as={"h2"} fontSize={32} textAlign={'left'} fontFamily="sansSerif" fontStyle={'normal'} fontWeight={400} alignItems={'center'} 
                             >Upload a file </Heading>
                       {this.state.cardUpload}
-               </Col>
-              <Col sm={5}> 
-              <Card  mt={'25%'}>
-              <Container>               
-                <Row>
-                  <Col>
-                  <Heading pb={30} as={"h4"} width={'100%'} textAlign={'center'}> Upload your Document here</Heading>
-              </Col>
-                </Row>
-                <Row>
-                  <Col>
-                  <Container>
-                  <Box width={'100%'} border='1px dashed #CCCCCC' boxSizing={'border-box'} borderWidth={1} p={3}  bg={'#ECEAEA'} >
-                      <Input className="mb-3"  type="file" onChange = {this.captureFile} />
-                      </Box>
-                    
-                      </Container>
-                      </Col>
-                </Row>
-                <Row>
-                  <Col> <Box pb={20}></Box> </Col>
-                </Row>
-                <Row>
-                  <Col>   <Button onClick={this.ipfsSubmit}> Submit</Button>
-                      <Button onClick={this.getProof}> Get Proof</Button></Col>
-                </Row>
-                <Row>
-                  <Col > <Box pb={20}></Box> </Col>
-                </Row>
-              </Container>
-                  </Card>   
-                      </Col> 
-                                </Row>          
+                     </Col>
+                      <Col sm={5}> 
+                         <Card  mt={'25%'}>
+                            <Container>               
+                              <Row>
+                                <Col>
+                                     <Heading pb={30} as={"h4"} width={'100%'} textAlign={'center'}> Upload your Document here</Heading>
+                                </Col>
+                              </Row>
+                              <Row>
+                                <Col>
+                                  <Container>
+                                    <Box width={'100%'} border='1px dashed #CCCCCC' boxSizing={'border-box'} borderWidth={1} p={3}  bg={'#ECEAEA'} >
+                                     <Input className="mb-3"  type="file" onChange = {this.captureFile} />
+                                     </Box>
+                                   </Container>
+                                </Col>
+                              </Row>
+                              <Row>
+                                 <Col> <Box pb={20}></Box> </Col>
+                              </Row>
+                              <Row>
+                                  <Col>   
+                                    <Button onClick={this.ipfsSubmit}> Submit</Button>
+                                   <Button onClick={this.getProof}> Get Proof</Button></Col>
+                                </Row>
+                               <Row>
+                                   <Col> 
+                                   <Box pb={20}></Box> 
+                                   </Col>
+                                </Row>
                               </Container>
+                           </Card>   
+                      </Col> 
+                  </Row>          
+              </Container>
  
 
       
