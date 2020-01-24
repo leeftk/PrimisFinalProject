@@ -1,4 +1,7 @@
 const SimpleStorage = artifacts.require("./SimpleStorage.sol");
+const {
+  catchRevert
+} = require('../utils/helpers');
 
 contract("SimpleStorage", accounts => {
   it("creates a hash, verifies hash is not equal to 0", async () => {
@@ -29,4 +32,26 @@ contract("SimpleStorage", accounts => {
     
 
   });
+   it('should test hasproof to see if proof exists', async () => {
+    const simpleStorageInstance = await SimpleStorage.deployed();
+  
+    const result = await simpleStorageInstance.hasProof(1, { from: accounts[0] });
+    //await simpleStorageInstance.notarize("hi", { from: accounts[1] });
+    
+    assert.equal(result, true)
+    //await catchRevert(simpleStorageInstance.notarize("hi", { from: accounts[0] }));
+  });
+
+  it('should revert if duplicate proof exists ', async () => {
+    const simpleStorageInstance = await SimpleStorage.deployed();
+  
+    //await simpleStorageInstance.notarize("hi", { from: accounts[1] });
+    
+    catchRevert(await simpleStorageInstance.notarize("hi", { from: accounts[0] }))
+    //await catchRevert(simpleStorageInstance.notarize("hi", { from: accounts[0] }));
+  });
 });
+
+ 
+
+

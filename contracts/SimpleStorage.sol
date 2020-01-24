@@ -16,10 +16,12 @@ event LogProofs(address adress, bytes32 proof);
       */
 mapping(uint => proof) public proofs;
 
+//mapping (bytes32 => bool) private proofs;
+
 struct proof {
     bytes32 hash;
     uint proofcount;
-    // uint price;
+    bool unique;
     // bool purchased;
     // address payable buyer;
     // address payable seller;
@@ -34,8 +36,8 @@ struct proof {
         
         bytes32 proofhash = hash(ipfshash);
         uint id = proofCount++;
-        require(proofs[proofCount].hash != proofhash);
-        proofs[proofCount] = proof({hash: proofhash, proofcount:id });
+        require(hasProof(id) == false);
+        proofs[proofCount] = proof({hash: proofhash, proofcount:id, unique: true });
         emit LogProofs(msg.sender, proofhash);
         
     }
@@ -53,5 +55,11 @@ struct proof {
       return proofs[_proofcount].hash;
       
     }
+
+    function hasProof(uint _proofCount) public view returns(bool) {
+    return proofs[_proofCount].unique;
+  }
 }
+
+
 
