@@ -4,7 +4,6 @@ import "@openzeppelin/contracts/ownership/Ownable.sol";
 
 
 contract SimpleStorage is Ownable{
-  uint storedData;
 
 //bytes32 public proof;
 
@@ -32,8 +31,10 @@ struct proof {
       * @param ipfshash is the hash that is created from ipfs
       */
     function notarize(string memory ipfshash ) public {
+        
         bytes32 proofhash = hash(ipfshash);
         uint id = proofCount++;
+        require(proofs[proofCount].hash != proofhash);
         proofs[proofCount] = proof({hash: proofhash, proofcount:id });
         emit LogProofs(msg.sender, proofhash);
         
@@ -45,7 +46,7 @@ struct proof {
       return sha256(abi.encodePacked(ipfshash));
     }
     /** @notice gets proof from blockchain
-      * @param proofcount is the id of the proof you want to retrieve
+      * @param _proofcount is the id of the proof you want to retrieve
       * @return return the proof from mapping
       */
     function getProof(uint _proofcount)  public view onlyOwner returns(bytes32)  {
