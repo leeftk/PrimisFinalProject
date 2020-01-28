@@ -11,12 +11,15 @@ Common proof-of-existence methods already exist such as POEX.io which allows for
 
 # Installation
 
-Clone the repo
-
-cd PrimisFinalProject
-cd client
-npm install
-truffle migrate 
-npm run start 
+1. Clone the repo
+2. Move into `client` directory
+`cd PrimisFinalProject`
+`cd client`
+3. Install dependencies
+`npm install`
+4. Migrate contracts
+`truffle migrate`
+5. Run application
+`npm run start`
 
 
