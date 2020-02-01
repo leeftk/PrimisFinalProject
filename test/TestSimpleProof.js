@@ -34,15 +34,7 @@ contract("SimpleStorage", accounts => {
     
 
   });
-   it('should test hasproof to see if proof exists', async () => {
-    const simpleStorageInstance = await SimpleStorage.deployed();
-  
-    const result = await simpleStorageInstance.hasProof(1, { from: accounts[0] });
-    //await simpleStorageInstance.notarize("hi", { from: accounts[1] });
-    
-    assert.equal(result, true)
-    //await catchRevert(simpleStorageInstance.notarize("hi", { from: accounts[0] }));
-  });
+
 
   it('should revert if duplicate proof exists ', async () => {
     const simpleStorageInstance = await SimpleStorage.deployed();
@@ -52,6 +44,20 @@ contract("SimpleStorage", accounts => {
     catchRevert(await simpleStorageInstance.notarize("hi", { from: accounts[0] }))
     //await catchRevert(simpleStorageInstance.notarize("hi", { from: accounts[0] }));
   });
+
+
+  it('should revert if duplicate proof exists ', async () => {
+    const simpleStorageInstance = await SimpleStorage.deployed();
+  
+    //await simpleStorageInstance.notarize("hi", { from: accounts[1] });
+    sha256 = require('js-sha3').sha256;
+    const hash = await SimpleStorage.notarize("hi",{from : accounts[0]});
+
+    assert.equal(hash, "0x" + sha256(hash),"The hash of the document and the cal should eqaulß")
+    //await catchRevert(simpleStorageInstance.notarize("hi", { from: accounts[0] }));
+  });
+
+
 });
 
 
