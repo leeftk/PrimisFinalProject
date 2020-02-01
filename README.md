@@ -39,6 +39,12 @@ Common proof-of-existence methods already exist such as POEX.io which allows for
 7. In a seperate terminal window cd into /PrimisFinalProject and run IPFS
        
        `ipfs init`
+       
+       `ipfs config Addresses.API /ip4/0.0.0.0/tcp/5001`
+       
+       `ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["*"]'`
+            
+       `ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["PUT", "GET", "POST"]'`
 
        `ipfs daemon`
 
