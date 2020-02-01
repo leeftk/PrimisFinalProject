@@ -37,8 +37,10 @@ Common proof-of-existence methods already exist such as POEX.io which allows for
       `truffle migrate`
       
 7. In a seperate terminal window cd into /PrimisFinalProject and run IPFS
+       
+       `ipfs init`
 
-      `ipfs daemon`
+       `ipfs daemon`
 
 8. Return to orginal window
 
