@@ -222,7 +222,7 @@ async getProof() {
                               <Row>
                                   <Col>   
                                     <Button onClick={this.ipfsSubmit}> Submit</Button>
-                                   <Button onClick={this.getProof}> Get Proof</Button></Col>
+                                   
                                 </Row>
                                <Row>
                                    <Col> 

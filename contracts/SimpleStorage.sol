@@ -1,9 +1,9 @@
 pragma solidity ^0.5.0;
 
-import "@openzeppelin/contracts/ownership/Ownable.sol";
 
 
-contract SimpleStorage is Ownable{
+
+contract SimpleStorage{
 
 //bytes32 public proof;
 
@@ -36,7 +36,7 @@ struct proof {
         
         bytes32 proofhash = hash(ipfshash);
         uint id = proofCount++;
-        require(hasProof(id) == false);
+        //require(hasProof(id) == false);
         proofs[proofCount] = proof({hash: proofhash, proofcount:id, unique: true });
         emit LogProofs(msg.sender, proofhash);
         
@@ -51,14 +51,14 @@ struct proof {
       * @param _proofcount is the id of the proof you want to retrieve
       * @return return the proof from mapping
       */
-    function getProof(uint _proofcount)  public view onlyOwner returns(bytes32)  {
+    function getProof(uint _proofcount)  public view returns(bytes32)  {
       return proofs[_proofcount].hash;
       
     }
 
-    function hasProof(uint _proofCount) public view returns(bool) {
-    return proofs[_proofCount].unique;
-  }
+  //   function hasProof(uint _proofCount) public view returns(bool) {
+  //   return proofs[_proofCount].unique;
+  // }
 }
 
 

@@ -1,8 +1,8 @@
+
 const SimpleStorage = artifacts.require("./SimpleStorage.sol");
 const {
   catchRevert
 } = require('../utils/helpers');
-const truffleAssert = require('truffle-assertions');
 
 
 contract("SimpleStorage", accounts => {
@@ -53,7 +53,5 @@ contract("SimpleStorage", accounts => {
     //await catchRevert(simpleStorageInstance.notarize("hi", { from: accounts[0] }));
   });
 });
-
- 
 
 
