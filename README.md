@@ -34,7 +34,11 @@ Common proof-of-existence methods already exist such as POEX.io which allows for
 
       `truffle migrate`
       
-7. In a seperate terminal window cd into /PrimisFinalProject and run IPFS
+7. In a seperate terminal window cd into /PrimisFinalProject and install IPFS Globally
+
+      `npm install --ipfs global`
+      
+8. Once complete run an ipfs daemon
 
       `ipfs daemon`
 
