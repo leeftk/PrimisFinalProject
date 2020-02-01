@@ -17,6 +17,8 @@ Common proof-of-existence methods already exist such as POEX.io which allows for
 
 3. Be sure to have Ganache GUI installed
 
+4. Be sure to have IPFS installed https://docs.ipfs.io/guides/guides/install/
+
 4. Run Ganance on port `8545`
 
 5. Move into `client` directory
@@ -34,11 +36,7 @@ Common proof-of-existence methods already exist such as POEX.io which allows for
 
       `truffle migrate`
       
-7. In a seperate terminal window cd into /PrimisFinalProject and install IPFS Globally
-
-      `npm install --ipfs global`
-      
-8. Once complete run an ipfs daemon
+7. In a seperate terminal window cd into /PrimisFinalProject and run IPFS
 
       `ipfs daemon`
 
