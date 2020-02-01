@@ -45,7 +45,7 @@ class App extends Component {
     }, (error, event)=>{
       if(event.returnValues[0] == this.state.accounts){
         const entries = Object.entries(event.returnValues)
-        console.log(event.returnValues.proof)
+        console.log("Transaction Hash:", event.returnValues.proof)
        
       result.push(event.returnValues.proof)
         let resultItems = []
@@ -56,7 +56,7 @@ class App extends Component {
         console.log(result)
         this.setState({ resultItems: resultItems})
       }else
-        console.log("wrong account buddy!")
+        console.log("there are no hashes associated with this account")
 
       })
     this.setState({ result: result })
@@ -101,21 +101,21 @@ updateState() {
                     <thead>
                       <tr>
                         <th>Transaction hash</th>
-                        <th>Time</th>
+                   
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <td>{this.state.result[0].slice(0,10) + "..." + this.state.result[0].slice(22,32)}</td>
-                        <td>March 28 2019 08:47:17 AM +UTC</td>
+                      
                       </tr>
                       <tr>
                         <td>{this.state.result[1].slice(0,10) + "..." + this.state.result[0].slice(22,32)}</td>
-                        <td>March 28 2019 08:52:17 AM +UTC</td>
+                        
                       </tr>
                       <tr>
                         <td>{this.state.result[2].slice(0,10) + "..." + this.state.result[2].slice(22,32)}</td>
-                        <td>March 28 2019 08:55:17 AM +UTC</td>
+                        
                       </tr>
                     </tbody>
                 </Table>
@@ -163,8 +163,8 @@ async getProof() {
     await ipfs.add(this.state.buffer, (err, ipfsHash) => {
       console.log(err,ipfsHash);
       this.setState({ ipfsHash: ipfsHash[0].hash })
-      this.notarize(ipfsHash[0].hash)
-      console.log("IPFS Hash:", this.state.ipfsHash)
+      this.notarize(ipfsHash[0].hash) 
+      console.log("IPFS Hash:", ipfsHash[0].hash)
 
     })
     
