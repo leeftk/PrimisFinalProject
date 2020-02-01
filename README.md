@@ -12,14 +12,46 @@ Common proof-of-existence methods already exist such as POEX.io which allows for
 # Installation
 
 1. Clone the repo
-2. Move into `client` directory
-`cd PrimisFinalProject`
-`cd client`
-3. Install dependencies
-`npm install`
-4. Migrate contracts
-`truffle migrate`
-5. Run application
-`npm run start`
+
+2. Be sure to have Metamask installed
+
+3. Be sure to have Ganache GUI installed
+
+4. Be sure to have IPFS installed https://docs.ipfs.io/guides/guides/install/
+
+4. Run Ganance on port `8545`
+
+5. Move into `client` directory
+
+      `cd PrimisFinalProject`
+      
+      `cd client`
+
+5. Install dependencies
+
+      `npm install`
+      
+
+6. Migrate contracts
+
+      `truffle migrate`
+      
+7. In a seperate terminal window cd into /PrimisFinalProject and run IPFS
+       
+       `ipfs init`
+       
+       `ipfs config Addresses.API /ip4/0.0.0.0/tcp/5001`
+       
+       `ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["*"]' `
+            
+       `ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["PUT", "GET", "POST"]' `
+
+       `ipfs daemon `
+
+8. Return to orginal window
+
+7. Run application
+
+      `npm run start`
 
 
