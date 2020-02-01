@@ -16,6 +16,7 @@ Common proof-of-existence methods already exist such as POEX.io which allows for
 2. Move into `client` directory
 
       `cd PrimisFinalProject`
+      
       `cd client`
 
 3. Install dependencies
