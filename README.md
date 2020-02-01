@@ -15,19 +15,19 @@ Common proof-of-existence methods already exist such as POEX.io which allows for
 
 2. Move into `client` directory
 
-  `cd PrimisFinalProject`
-  `cd client`
+      `cd PrimisFinalProject`
+      `cd client`
 
 3. Install dependencies
 
-  `npm install`
+      `npm install`
 
 4. Migrate contracts
 
-  `truffle migrate`
+      `truffle migrate`
 
 5. Run application
 
-  `npm run start`
+      `npm run start`
 
 
