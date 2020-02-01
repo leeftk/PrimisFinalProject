@@ -4,6 +4,7 @@ const {
   catchRevert
 } = require('../utils/helpers');
 
+// the tests should test that a hass was created
 
 contract("SimpleStorage", accounts => {
   it("creates a hash, verifies hash is not equal to 0", async () => {
@@ -19,7 +20,7 @@ contract("SimpleStorage", accounts => {
 
   });
 
-
+//tests that the proof count is incrementing
   it("proofCount should equal 1", async () => {
     const simpleStorageInstance = await SimpleStorage.deployed();
 
@@ -35,7 +36,7 @@ contract("SimpleStorage", accounts => {
 
   });
 
-
+//tests that the proof isn't a duplicate
   it('should revert if duplicate proof exists ', async () => {
     const simpleStorageInstance = await SimpleStorage.deployed();
   
@@ -45,8 +46,8 @@ contract("SimpleStorage", accounts => {
     //await catchRevert(simpleStorageInstance.notarize("hi", { from: accounts[0] }));
   });
 
-
-  it('should revert if duplicate proof exists ', async () => {
+//tests that the notarize is producing an authetic hash
+  it('the notarize hash should be the same as sha256 ', async () => {
     const simpleStorageInstance = await SimpleStorage.deployed();
   
     //await simpleStorageInstance.notarize("hi", { from: accounts[1] });
