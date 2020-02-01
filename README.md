@@ -13,21 +13,27 @@ Common proof-of-existence methods already exist such as POEX.io which allows for
 
 1. Clone the repo
 
-2. Move into `client` directory
+2. Be sure to have Metamask installed
+
+3. Be sure to have Ganache GUI installed
+
+4. Run Ganance on port `8545`
+
+5. Move into `client` directory
 
       `cd PrimisFinalProject`
       
       `cd client`
 
-3. Install dependencies
+5. Install dependencies
 
       `npm install`
 
-4. Migrate contracts
+6. Migrate contracts
 
       `truffle migrate`
 
-5. Run application
+7. Run application
 
       `npm run start`
 
